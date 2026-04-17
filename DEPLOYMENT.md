@@ -1,6 +1,6 @@
 # Deploy with GitHub Pages only
 
-This Hugo site builds with **GitHub Actions** and is published to **GitHub Pages**. There is no Netlify (or other host) in the loop.
+This Hugo site builds with **GitHub Actions** and is published to **GitHub Pages**. There is no Netlify (or other host) in the loop. For **private** repositories, GitHub Pages may require a paid plan; **public** repos can use Pages at no extra cost.
 
 ## One-time setup in GitHub
 
