@@ -73,7 +73,7 @@ console.log(toc ? "TOC present" : "No TOC");
 
 ### Link
 
-[Back to home section](../../#work) (relative link from this URL) and [example external](https://example.com).
+[Back to home section](../../#work) (relative link from this URL) and [this site](https://yashraj.cc/).
 
 ### Horizontal rule
 
