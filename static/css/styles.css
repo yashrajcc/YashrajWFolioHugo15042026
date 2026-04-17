@@ -54,6 +54,12 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Improve anchor navigation with sticky header */
+section[id],
+[id].home-section {
+  scroll-margin-top: 110px;
+}
+
 body {
   margin: 0;
   background: var(--background);

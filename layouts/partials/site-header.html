@@ -6,6 +6,9 @@
   </a>
   <nav class="site-nav" aria-label="Main">
     {{- range .Site.Params.nav -}}
+    {{- if and (eq .url "/resume.pdf") (not (fileExists "static/resume.pdf")) -}}
+      {{- continue -}}
+    {{- end -}}
     {{- $href := "" -}}
     {{- if .external -}}
       {{- $href = .url -}}

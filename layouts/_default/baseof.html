@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
   <title>{{ block "title" . }}{{ if .IsHome }}{{ .Site.Params.author | default .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}{{ end }}</title>
+  <link rel="canonical" href="{{ .Permalink }}">
   {{- if .Description -}}
   <meta name="description" content="{{ .Description }}">
   {{- else if and .Params.summary (not .IsHome) -}}
@@ -12,6 +13,36 @@
   {{- else if .IsHome -}}
   {{- with site.Home.Description -}}<meta name="description" content="{{ . }}">{{- end -}}
   {{- end -}}
+
+  {{- /* Minimal social meta for link previews (Slack/WhatsApp) */ -}}
+  {{- $metaTitle := "" -}}
+  {{- if .IsHome -}}
+    {{- $metaTitle = (.Site.Params.author | default .Site.Title) -}}
+  {{- else -}}
+    {{- $metaTitle = printf "%s · %s" .Title .Site.Title -}}
+  {{- end -}}
+  {{- $metaDesc := "" -}}
+  {{- if .Description -}}
+    {{- $metaDesc = .Description -}}
+  {{- else if and .Params.summary (not .IsHome) -}}
+    {{- $metaDesc = .Params.summary -}}
+  {{- else if .IsHome -}}
+    {{- $metaDesc = site.Home.Description -}}
+  {{- end -}}
+  {{- $hasOgImage := fileExists "static/images/og.png" -}}
+
+  <meta property="og:title" content="{{ $metaTitle }}">
+  {{- with $metaDesc -}}<meta property="og:description" content="{{ . }}">{{- end -}}
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+  {{- if $hasOgImage -}}
+  <meta property="og:image" content="{{ "/images/og.png" | absURL }}">
+  <meta name="twitter:card" content="summary_large_image">
+  {{- else -}}
+  <meta name="twitter:card" content="summary">
+  {{- end -}}
+  <meta name="twitter:title" content="{{ $metaTitle }}">
+  {{- with $metaDesc -}}<meta name="twitter:description" content="{{ . }}">{{- end -}}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">

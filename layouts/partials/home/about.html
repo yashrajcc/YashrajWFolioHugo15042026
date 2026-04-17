@@ -33,6 +33,13 @@
       </div>
 
       {{- $resumeURL := .Site.Params.resume_url | default "#" -}}
+      {{- $showResume := false -}}
+      {{- if hasPrefix $resumeURL "http" -}}
+        {{- $showResume = true -}}
+      {{- else if and (eq $resumeURL "/resume.pdf") (fileExists "static/resume.pdf") -}}
+        {{- $showResume = true -}}
+      {{- end -}}
+      {{- if $showResume -}}
       <a class="resume-card" href="{{ $resumeURL }}"{{ if hasPrefix $resumeURL "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>
         <div class="resume-card__text">
           <span class="resume-card__title">{{ $a.resume.title }}</span>
@@ -40,6 +47,7 @@
         </div>
         <span class="resume-card__arrow" aria-hidden="true">→</span>
       </a>
+      {{- end -}}
     </div>
   </div>
 </section>
