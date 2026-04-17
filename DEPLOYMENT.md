@@ -2,15 +2,30 @@
 
 This Hugo site builds with **GitHub Actions** and is published to **GitHub Pages**. There is no Netlify (or other host) in the loop. For **private** repositories, GitHub Pages may require a paid plan; **public** repos can use Pages at no extra cost.
 
+## Three separate things (easy to mix up)
+
+| What | Who controls it |
+|------|------------------|
+| **This Git repo** | Pushing code only updates GitHub. It does **not** delete or change anything inside your **Netlify** account. |
+| **Netlify** | A Netlify **site** is a separate object. Removing `netlify.toml` only stops *configuring* Netlify from the repo; Netlify will **keep building** until you **disconnect** the repo there or **delete the site** in the Netlify UI. |
+| **GitHub Pages** | Does nothing until **Settings → Pages → Source** is set to **GitHub Actions** and a workflow run **succeeds** (you may need to **approve** the `github-pages` environment the first time). |
+
 ## One-time setup in GitHub
 
-1. Push this repo to GitHub (if it is not already remote). If an old **Netlify** site is still connected to this repo, disconnect or delete it so you are not deploying to two hosts by accident.
-2. **Settings → Pages**
-   - **Source:** GitHub Actions (not “Deploy from a branch”).
+1. Push this repo so `.github/workflows/pages.yml` exists on GitHub (default branch should be **`main`** or **`master`**; the workflow listens to both).
+2. **Settings → Pages → Build and deployment**
+   - **Source:** **GitHub Actions** (not “Deploy from a branch”). Until this is set, the deploy workflow either does not publish or fails with a Pages-related error.
 3. **Settings → Actions → General → Workflow permissions**
-   - Choose **Read and write permissions** (needed for Pages deployment from Actions the first time you may also need to allow “GitHub Actions” to create the `github-pages` environment—approve any prompt after the first workflow run).
+   - If deploys fail with permission errors, set **Read and write permissions** and save, then **re-run** the workflow.
+4. Open **Actions** → latest **“Deploy site to GitHub Pages”** run:
+   - If it says **“Waiting for approval”** for environment `github-pages`, open the run → **Review deployments** → **Approve**.
+   - If it failed, open the failed step and read the log (common: Pages source not set to GitHub Actions yet).
 
-After you push to `main`, open the **Actions** tab and confirm the “Deploy site to GitHub Pages” workflow succeeds. The site URL is shown on the workflow run and under **Settings → Pages**.
+The live URL appears on the successful run and under **Settings → Pages**.
+
+## Stop Netlify from deploying this repo
+
+In **Netlify** (browser): open the site that is linked to this GitHub repo → **Site configuration** → **Build & deploy** → **Continuous deployment** → **Manage repository** / **Unlink** (wording varies), **or** **General** → **Delete project** if you want the site gone entirely. None of that can be done from this repository alone.
 
 ## Custom domain (`work.yashraj.cc`)
 
