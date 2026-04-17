@@ -95,7 +95,7 @@ Anchor target for **Skip to mocks** in the toolbar. Place wireframe images, embe
 
 ### Mock notes
 
-Use this section for design notes, links to Figma, or embedded iframes when you are ready (mind CSP on Netlify).
+Use this section for design notes, links to Figma, or embedded iframes when you are ready (mind CSP on your host if you add iframes).
 
 ## Appendix
 
