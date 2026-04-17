@@ -1,0 +1,50 @@
+baseURL = 'https://yashraj.cc/'
+languageCode = 'en-us'
+title = 'Portfolio'
+disableKinds = ['taxonomy', 'term']
+relativeURLs = false
+
+[markup]
+  [markup.tableOfContents]
+    endLevel = 4
+    ordered = false
+    startLevel = 2
+
+[params]
+  author = "Yashraj Wadalkar"
+  brand = "yashraj.cc"
+  resume_url = "/resume.pdf"
+  contact_email = "hello@yashraj.cc"
+  show_a11y_banner = true
+  a11y_message = "For a simplified experience, switch to Accessible Mode."
+  a11y_enable_label = "Enable Accessible Mode"
+  a11y_disable_label = "Disable Accessible Mode"
+
+[[params.nav]]
+  name = "Home"
+  url = "/"
+
+[[params.nav]]
+  name = "About"
+  url = "#about"
+  anchor = true
+
+[[params.nav]]
+  name = "Career"
+  url = "#career"
+  anchor = true
+
+[[params.nav]]
+  name = "Writing"
+  url = "#writing"
+  anchor = true
+
+[[params.nav]]
+  name = "Work"
+  url = "#work"
+  anchor = true
+
+[[params.nav]]
+  name = "Resume"
+  url = "/resume.pdf"
+  external = false

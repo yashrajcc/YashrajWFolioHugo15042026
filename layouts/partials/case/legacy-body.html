@@ -1,0 +1,10 @@
+{{- $hasStruct := or .Params.case_intro (or .Params.case_problem (or .Params.case_approach .Params.case_outcome)) -}}
+{{- if and .Content (not $hasStruct) -}}
+<div class="prose case-study__legacy">
+  {{ .Content }}
+</div>
+{{- else if and .Content $hasStruct -}}
+<div class="prose case-study__appendix">
+  {{ .Content }}
+</div>
+{{- end -}}

@@ -1,0 +1,13 @@
+{{- with .Params.aside_tidbits -}}
+<aside class="showcase-tidbits" aria-label="{{ $.Params.aside_tidbits_label | default "Snippets" }}">
+  <p class="showcase-tidbits__label">{{ $.Params.aside_tidbits_label | default "Tidbits" }}</p>
+  {{- range . -}}
+  <div class="showcase-tidbit">
+    {{- with .title -}}<h3 class="showcase-tidbit__title">{{ . }}</h3>{{- end -}}
+    {{- with .body -}}
+    <div class="showcase-tidbit__body prose prose--tidbit">{{ $.RenderString . }}</div>
+    {{- end -}}
+  </div>
+  {{- end -}}
+</aside>
+{{- end -}}

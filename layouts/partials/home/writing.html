@@ -1,0 +1,20 @@
+{{- $w := .Params.home_writing -}}
+{{- if $w -}}
+{{- $items := $w.items | default slice -}}
+{{- if or $w.intro (gt (len $items) 0) -}}
+<section class="section home-section home-writing" id="writing" aria-labelledby="writing-heading">
+  <h2 id="writing-heading" class="section-heading">{{ $w.title | default "Writing" }}</h2>
+  {{- with $w.intro -}}<p class="home-writing__intro">{{ . }}</p>{{- end -}}
+  {{- if gt (len $items) 0 -}}
+  <ul class="home-writing__list">
+    {{- range $items -}}
+    <li>
+      <a href="{{ .url | relURL }}">{{ .title }}</a>
+      {{- with .summary -}}<p class="home-writing__summary">{{ . }}</p>{{- end -}}
+    </li>
+    {{- end -}}
+  </ul>
+  {{- end -}}
+</section>
+{{- end -}}
+{{- end -}}

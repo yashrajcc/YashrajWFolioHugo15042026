@@ -1,0 +1,14 @@
+<header class="case-hero">
+  {{- with .Params.case_hero_eyebrow -}}<p class="case-hero__eyebrow">{{ . }}</p>{{- end -}}
+  <h1 class="case-hero__title">{{ .Params.case_hero_title | default .Title }}</h1>
+  <div class="case-hero__meta">
+    {{- with .Params.role -}}<span class="case-hero__role">{{ . }}</span>{{- end -}}
+    {{- with .Date -}}<time class="case-hero__date" datetime="{{ .Format "2006-01-02" }}">{{ .Format "January 2, 2006" }}</time>{{- end -}}
+  </div>
+  {{- with .Params.case_hero_sub -}}<p class="case-hero__sub">{{ . }}</p>{{- end -}}
+  {{- with .Params.case_hero_image -}}
+  <figure class="case-hero__figure">
+    <img src="{{ . | relURL }}" alt="{{ $.Params.case_hero_image_alt | default $.Title }}" width="1200" height="630" loading="eager" decoding="async" />
+  </figure>
+  {{- end -}}
+</header>

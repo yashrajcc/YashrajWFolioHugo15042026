@@ -1,0 +1,5 @@
+{{- with .Params.case_footer -}}
+<footer class="case-page-footer prose" aria-label="Case study footer">
+  <div class="case-section__body">{{ $.RenderString . }}</div>
+</footer>
+{{- end -}}

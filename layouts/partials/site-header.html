@@ -1,0 +1,27 @@
+{{- $home := site.Home.RelPermalink -}}
+<header class="site-header">
+  <a class="site-brand" href="{{ $home }}">
+    <span class="site-brand__glyph" aria-hidden="true">&lt;&gt;</span>
+    <span class="site-brand__name">{{ .Site.Params.brand | default .Site.Params.author | default .Site.Title }}</span>
+  </a>
+  <nav class="site-nav" aria-label="Main">
+    {{- range .Site.Params.nav -}}
+    {{- $href := "" -}}
+    {{- if .external -}}
+      {{- $href = .url -}}
+    {{- else if .anchor -}}
+      {{- $href = printf "%s%s" $home .url -}}
+    {{- else if eq .url "/" -}}
+      {{- $href = $home -}}
+    {{- else -}}
+      {{- $href = .url | relURL -}}
+    {{- end -}}
+    <a href="{{ $href }}"{{ if .external }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .name }}</a>
+    {{- end -}}
+  </nav>
+  <div class="site-tools">
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Theme">
+      <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
+    </button>
+  </div>
+</header>

@@ -1,0 +1,35 @@
+{{- $c := .Params.home_career -}}
+{{- if $c -}}
+<section class="section section-career home-section" id="career" aria-labelledby="career-heading">
+  <header class="career-intro">
+    <h2 id="career-heading" class="career-intro__title">{{ $c.title }}</h2>
+    <p class="career-intro__sub">{{ $c.subtitle }}</p>
+  </header>
+
+  <div class="career-grid career-grid--top">
+    {{- range $c.featured_row -}}
+    <article class="career-card">
+      <div class="career-card__row">
+        <span class="career-card__org">{{ .org }}</span>
+        <span class="career-card__period">{{ .period }}</span>
+      </div>
+      <p class="career-card__role">{{ .role }}</p>
+      <p class="career-card__body">{{ .body }}</p>
+    </article>
+    {{- end -}}
+  </div>
+
+  <div class="career-grid career-grid--five">
+    {{- range $c.row_five -}}
+    <article class="career-card career-card--compact">
+      <div class="career-card__row">
+        <span class="career-card__org">{{ .org }}</span>
+        <span class="career-card__period">{{ .period }}</span>
+      </div>
+      <p class="career-card__role">{{ .role }}</p>
+      <p class="career-card__body">{{ .body }}</p>
+    </article>
+    {{- end -}}
+  </div>
+</section>
+{{- end -}}

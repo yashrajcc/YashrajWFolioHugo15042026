@@ -1,0 +1,16 @@
+{{- $limit := 3 -}}
+{{- if .IsNamedParams -}}
+  {{- $limit = .Get "limit" | default "3" | int -}}
+{{- else if .Get 0 -}}
+  {{- $limit = .Get 0 | int -}}
+{{- end -}}
+{{- $here := .Page.RelPermalink -}}
+{{- $pages := where (where (where site.RegularPages "Section" "work") "Kind" "page") "RelPermalink" "!=" $here -}}
+<ul class="showcase-featured-work">
+  {{- range first $limit $pages -}}
+  <li>
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    {{- with .Params.summary -}}<span class="showcase-featured-work__sum"> — {{ . }}</span>{{- end -}}
+  </li>
+  {{- end -}}
+</ul>

@@ -1,0 +1,6 @@
+{{- with .Params.case_problem -}}
+<section class="case-section case-section--problem prose" aria-labelledby="case-problem-heading">
+  <h2 id="case-problem-heading" class="case-section__heading">Problem</h2>
+  <div class="case-section__body">{{ $.RenderString . }}</div>
+</section>
+{{- end -}}

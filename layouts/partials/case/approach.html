@@ -1,0 +1,6 @@
+{{- with .Params.case_approach -}}
+<section class="case-section case-section--approach prose" aria-labelledby="case-approach-heading">
+  <h2 id="case-approach-heading" class="case-section__heading">Approach</h2>
+  <div class="case-section__body">{{ $.RenderString . }}</div>
+</section>
+{{- end -}}

@@ -1,0 +1,32 @@
+{{- $cards := .Params.home_featured_cards | default slice -}}
+{{- if gt (len $cards) 0 -}}
+<div class="home-work-band home-work-band--featured">
+  <h2 id="work-featured-heading" class="section-heading">{{ .Params.home_featured_work_title | default "Featured work" }}</h2>
+  <div class="home-work-featured__grid">
+    {{- range $cards -}}
+    <article class="card card--featured card--home-work">
+      <a class="card--home-work__link" href="{{ .url | relURL }}">
+        {{- if .image -}}
+        <div class="card-featured__media">
+          <img
+            class="card-featured__thumb"
+            src="{{ .image | relURL }}"
+            alt="{{ .image_alt | default .title }}"
+            width="800"
+            height="400"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        {{- end -}}
+        <div class="card-featured__content">
+          {{- with .company -}}<span class="card-badge">{{ . }}</span>{{- end -}}
+          <h3 class="card-title card-title--featured">{{ .title }}</h3>
+          <p class="card-summary">{{ .summary }}</p>
+        </div>
+      </a>
+    </article>
+    {{- end -}}
+  </div>
+</div>
+{{- end -}}

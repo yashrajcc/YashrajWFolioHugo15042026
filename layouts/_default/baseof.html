@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode | default "en-us" }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+  <title>{{ block "title" . }}{{ if .IsHome }}{{ .Site.Params.author | default .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}{{ end }}</title>
+  {{- if .Description -}}
+  <meta name="description" content="{{ .Description }}">
+  {{- else if and .Params.summary (not .IsHome) -}}
+  <meta name="description" content="{{ .Params.summary }}">
+  {{- else if .IsHome -}}
+  {{- with site.Home.Description -}}<meta name="description" content="{{ . }}">{{- end -}}
+  {{- end -}}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ "css/styles.css" | relURL }}">
+</head>
+<body>
+  {{ partial "site-a11y-strip.html" . }}
+  <div class="shell">
+    {{ partial "site-header.html" . }}
+    {{ block "main" . }}{{ end }}
+    {{ partial "site-footer.html" . }}
+    <div class="site-deco" aria-hidden="true" title=""></div>
+  </div>
+  <script src="{{ "js/site.js" | relURL }}" defer></script>
+</body>
+</html>

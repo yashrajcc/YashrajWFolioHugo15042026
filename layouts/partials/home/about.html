@@ -1,0 +1,46 @@
+{{- $a := .Params.home_about -}}
+{{- if $a -}}
+<section class="section section-about home-section" id="about" aria-labelledby="about-heading">
+  <div class="about-panel">
+    <div class="about-panel__visual">
+      {{- $img := $a.portrait | default "/images/about-portrait.png" -}}
+      <img
+        class="about-panel__photo"
+        src="{{ $img | relURL }}"
+        width="400"
+        height="400"
+        alt="{{ $a.portrait_alt | default "Portrait" }}"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+    <div class="about-panel__content">
+      <h2 id="about-heading" class="about-panel__h">{{ $a.about_title }}</h2>
+      <div class="about-panel__body">
+        {{- range $a.about_paragraphs -}}
+        <p>{{ . }}</p>
+        {{- end -}}
+      </div>
+      <span class="about-panel__flourish" aria-hidden="true">
+        <span class="about-panel__flourish-dot"></span>
+      </span>
+
+      <h3 class="about-panel__h about-panel__h--sub">{{ $a.currently_title }}</h3>
+      <div class="about-panel__body">
+        {{- range $a.currently_items -}}
+        <p>{{ . }}</p>
+        {{- end -}}
+      </div>
+
+      {{- $resumeURL := .Site.Params.resume_url | default "#" -}}
+      <a class="resume-card" href="{{ $resumeURL }}"{{ if hasPrefix $resumeURL "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>
+        <div class="resume-card__text">
+          <span class="resume-card__title">{{ $a.resume.title }}</span>
+          <span class="resume-card__sub">{{ $a.resume.subtitle }}</span>
+        </div>
+        <span class="resume-card__arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+{{- end -}}

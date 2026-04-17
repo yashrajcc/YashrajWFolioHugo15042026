@@ -1,0 +1,29 @@
+{{ define "main" }}
+<div class="showcase-page">
+  <nav class="showcase-toolbar" aria-label="Page tools">
+    <a class="showcase-toolbar__link" href="{{ site.Home.RelPermalink }}">Back to home</a>
+    <button
+      type="button"
+      class="showcase-toolbar__btn"
+      id="showcase-share"
+      data-share-url="{{ .Permalink }}"
+      data-share-title="{{ .Title }}"
+    >Share</button>
+    <a class="showcase-toolbar__link" href="#mocks">Skip to mocks</a>
+  </nav>
+  <div class="showcase-shell{{ if .Params.aside_tidbits }} showcase-shell--with-tidbits{{ end }}">
+    <aside class="showcase-toc" aria-label="Page contents">
+      <p class="showcase-toc__label">Page contents</p>
+      {{ .TableOfContents }}
+    </aside>
+    <article class="showcase-main prose">
+      <h1 class="showcase-doc-title">{{ .Title }}</h1>
+      {{- with .Params.summary -}}
+      <p class="showcase-doc-lede">{{ . }}</p>
+      {{- end -}}
+      {{ .Content }}
+    </article>
+    {{ partial "showcase-tidbits.html" . }}
+  </div>
+</div>
+{{ end }}
