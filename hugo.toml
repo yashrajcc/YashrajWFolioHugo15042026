@@ -1,4 +1,4 @@
-baseURL = 'https://yashraj.cc/'
+baseURL = 'https://work.yashraj.cc/'
 languageCode = 'en-us'
 title = 'Portfolio'
 disableKinds = ['taxonomy', 'term']
