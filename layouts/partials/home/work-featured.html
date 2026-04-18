@@ -1,7 +1,7 @@
 {{- $cards := .Params.home_featured_cards | default slice -}}
 {{- if gt (len $cards) 0 -}}
-<div class="home-work-band home-work-band--featured">
-  <h2 id="work-featured-heading" class="section-heading">{{ .Params.home_featured_work_title | default "Featured work" }}</h2>
+<div class="home-work-band home-work-band--featured" data-work-band="featured">
+  <h3 id="work-featured-heading" class="section-heading">{{ .Params.home_featured_work_title | default "Featured work" }}</h3>
   <div class="home-work-featured__grid">
     {{- range $cards -}}
     <article class="card card--featured card--home-work">
@@ -21,7 +21,7 @@
         {{- end -}}
         <div class="card-featured__content">
           {{- with .company -}}<span class="card-badge">{{ . }}</span>{{- end -}}
-          <h3 class="card-title card-title--featured">{{ .title }}</h3>
+          <h4 class="card-title card-title--featured">{{ .title }}</h4>
           <p class="card-summary">{{ .summary }}</p>
         </div>
       </a>

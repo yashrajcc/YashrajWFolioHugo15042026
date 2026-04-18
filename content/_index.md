@@ -1,36 +1,39 @@
 ---
 title: Home
-description: "UX designer & tinkerer at large @ Google, teaching myself how to code."
+description: "UX designer focused on cloud infrastructure, developer experiences, and systems that stay understandable as they scale."
 
 home_hero_greeting: "Hi, Namaskar, ನಮಸ್ಕಾರ"
 home_hero_eyebrow: "I'm Yashraj Wadalkar"
-home_hero_headline: "Building the future of cloud infrastructure & developer experiences."
-home_hero_sub: "UX designer & tinkerer at large @ Google, teaching myself how to code."
+home_hero_headline: "Building the future of cloud infrastructure and developer experiences."
+home_hero_sub: "UX designer at Google — I turn dense platforms into flows people can trust, then prototype ideas in code."
 home_hero_primary_label: "View work"
 home_hero_primary_url: "#work"
 home_hero_secondary_label: "Get in touch"
 
 home_work_section_label: "Work"
+home_work_eyebrow: "Portfolio"
+home_work_intro: "Shipped product work on cloud and developer surfaces, plus experiments in civic tech, maps, and narrative interfaces."
+home_work_filter_all: "All work"
 
 home_featured_work_title: "Featured work"
 home_featured_cards:
-  - title: "Cloud documentation platform"
-    summary: "Unified reference for APIs and internal guides at a large technology company."
+  - title: "Application Modernization"
+    summary: "End-to-end journeys that help enterprises plan, execute, and communicate modernization with less guesswork and clearer proof."
     company: "Google"
     image: "/images/project1-thumb.png"
-    image_alt: "Documentation portal thumbnail"
-    url: "work/showcase/"
-  - title: "Enterprise checkout refinement"
-    summary: "Reduced abandonment by clarifying steps and error recovery on mobile web."
-    company: "Microsoft"
+    image_alt: "Application modernization abstract"
+    url: "work/project1/"
+  - title: "Migration Center Discovery"
+    summary: "Discovery and information architecture for a guided experience that reduces risk when teams evaluate large-scale moves."
+    company: "Google"
     image: "/images/project2-thumb.png"
-    image_alt: "Checkout flow thumbnail"
-    url: "work/showcase/"
-  - title: "Design system adoption"
-    summary: "Scaled tokens and components across product suites with governance and training."
+    image_alt: "Migration discovery thumbnail"
+    url: "work/project2/"
+  - title: "MAT"
+    summary: "Modernization Assessment Tool — structured signals and narratives that make readiness legible to executives and builders."
     company: "Google"
     image: "/images/project1-thumb.png"
-    image_alt: "Design system abstract"
+    image_alt: "Assessment tool abstract"
     url: "work/showcase/"
 
 home_other_work_title: "In other worlds"
@@ -117,6 +120,6 @@ home_career:
 
 home_writing:
   title: "Writing"
-  intro: "Notes and longer pieces will appear here."
+  intro: "Longer notes on design, infrastructure, and side projects — coming soon."
   items: []
 ---

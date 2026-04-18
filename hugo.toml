@@ -18,10 +18,22 @@ relativeURLs = false
   brand = "yashraj.cc"
   resume_url = "/resume.pdf"
   contact_email = "hello@yashraj.cc"
-  show_a11y_banner = true
-  a11y_message = "For a simplified experience, switch to Accessible Mode."
-  a11y_enable_label = "Enable Accessible Mode"
-  a11y_disable_label = "Disable Accessible Mode"
+
+[params.footer]
+  tagline = "Turning anxiety into artifacts since 2021 🚀"
+  blurb = "A UX designer and systems thinker focused on making complex, invisible systems understandable. Passionate about infrastructure, developer tools, and building things that last."
+  featured_heading = "Featured work"
+  connect_heading = "Let's connect"
+  connect_intro = "Find me on these platforms:"
+  credit = "Made with ❤️ + ☕ somewhere between midnight and 3am."
+  rights_suffix = "All Rights Reserved."
+  brand = "yashraj.cc"
+
+[params.footer.social]
+  github = ""
+  linkedin = ""
+  twitter = ""
+  instagram = ""
 
 [[params.nav]]
   name = "Home"

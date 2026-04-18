@@ -1,7 +1,7 @@
 {{- $cards := .Params.home_other_cards | default slice -}}
 {{- if gt (len $cards) 0 -}}
-<div class="home-work-band home-work-band--other">
-  <h2 id="work-other-heading" class="section-heading">{{ .Params.home_other_work_title | default "In other worlds" }}</h2>
+<div class="home-work-band home-work-band--other" data-work-band="other">
+  <h3 id="work-other-heading" class="section-heading">{{ .Params.home_other_work_title | default "In other worlds" }}</h3>
   <div class="home-work-other__grid">
     {{- range $cards -}}
     <article class="card card--home-other">
@@ -21,7 +21,7 @@
         {{- end -}}
         <div class="card--home-other__body">
           {{- with .company -}}<span class="card-badge">{{ . }}</span>{{- end -}}
-          <h3 class="card--home-other__title">{{ .title }}</h3>
+          <h4 class="card--home-other__title">{{ .title }}</h4>
           <p class="card--home-other__summary">{{ .summary }}</p>
         </div>
       </a>

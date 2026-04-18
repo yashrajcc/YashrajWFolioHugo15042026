@@ -23,8 +23,19 @@
     {{- end -}}
   </nav>
   <div class="site-tools">
-    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Theme">
-      <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
+    <button
+      type="button"
+      class="theme-toggle"
+      id="theme-toggle"
+      aria-label="Switch to dark mode"
+      aria-pressed="false"
+      title="Theme: system preference or choose light/dark"
+    >
+      <span class="theme-toggle__icons" aria-hidden="true">
+        {{- /* Heroicons-style outline sun / moon (MIT); no runtime dependency */ -}}
+        <svg class="theme-toggle__svg theme-toggle__svg--sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="theme-toggle__svg theme-toggle__svg--moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+      </span>
     </button>
   </div>
 </header>

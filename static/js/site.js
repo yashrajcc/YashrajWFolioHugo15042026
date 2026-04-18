@@ -1,6 +1,5 @@
 (function () {
   var root = document.documentElement;
-  var body = document.body;
 
   function getTheme() {
     try {
@@ -21,11 +20,10 @@
     } catch (e) {}
     var btn = document.getElementById("theme-toggle");
     if (btn) {
-      btn.setAttribute("aria-pressed", mode === "dark" ? "true" : "false");
-      var icon = btn.querySelector(".theme-toggle__icon");
-      if (icon) {
-        icon.textContent = mode === "dark" ? "☀️" : "🌙";
-      }
+      var dark = mode === "dark";
+      btn.setAttribute("aria-pressed", dark ? "true" : "false");
+      btn.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+      btn.setAttribute("title", dark ? "Using dark theme — click for light" : "Using light theme — click for dark");
     }
   }
 
@@ -41,18 +39,6 @@
   document.getElementById("theme-toggle")?.addEventListener("click", function () {
     setTheme(root.classList.contains("theme-dark") ? "light" : "dark");
   });
-
-  var a11yBtn = document.getElementById("a11y-toggle");
-  if (a11yBtn) {
-    var a11yEnable = a11yBtn.getAttribute("data-a11y-enable") || "Enable Accessible Mode";
-    var a11yDisable = a11yBtn.getAttribute("data-a11y-disable") || "Disable Accessible Mode";
-    a11yBtn.textContent = body.classList.contains("a11y-mode") ? a11yDisable : a11yEnable;
-    a11yBtn.addEventListener("click", function () {
-      var on = body.classList.toggle("a11y-mode");
-      a11yBtn.setAttribute("aria-pressed", on ? "true" : "false");
-      a11yBtn.textContent = on ? a11yDisable : a11yEnable;
-    });
-  }
 
   var shareBtn = document.getElementById("showcase-share");
   if (shareBtn) {
@@ -78,6 +64,60 @@
         });
       } else {
         window.prompt("Copy URL:", url);
+      }
+    });
+  }
+
+  var workTabs = document.querySelector(".home-work-filter");
+  var workBandsRoot = document.getElementById("work-bands");
+  if (workTabs && workBandsRoot) {
+    var tabs = workTabs.querySelectorAll("[data-work-filter]");
+    var bands = workBandsRoot.querySelectorAll("[data-work-band]");
+    function tabList() {
+      return Array.prototype.slice.call(tabs);
+    }
+    function setActiveTab(tab) {
+      var mode = tab.getAttribute("data-work-filter") || "all";
+      workBandsRoot.setAttribute("data-work-active", mode);
+      tabs.forEach(function (t) {
+        var selected = t === tab;
+        t.setAttribute("aria-selected", selected ? "true" : "false");
+        t.tabIndex = selected ? 0 : -1;
+      });
+      bands.forEach(function (band) {
+        var key = band.getAttribute("data-work-band");
+        var visible = mode === "all" || mode === key;
+        if (visible) {
+          band.removeAttribute("hidden");
+        } else {
+          band.setAttribute("hidden", "");
+        }
+      });
+    }
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        setActiveTab(tab);
+      });
+    });
+    var initial = workTabs.querySelector('[aria-selected="true"]') || tabs[0];
+    if (initial) {
+      setActiveTab(initial);
+    }
+    workTabs.addEventListener("keydown", function (e) {
+      var list = tabList();
+      var i = list.indexOf(document.activeElement);
+      if (i < 0) return;
+      if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+        e.preventDefault();
+        var dir = e.key === "ArrowRight" ? 1 : -1;
+        var next = (i + dir + list.length) % list.length;
+        list[next].focus();
+      } else if (e.key === "Home") {
+        e.preventDefault();
+        list[0].focus();
+      } else if (e.key === "End") {
+        e.preventDefault();
+        list[list.length - 1].focus();
       }
     });
   }

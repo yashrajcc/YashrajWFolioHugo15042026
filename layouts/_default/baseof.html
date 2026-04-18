@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode | default "en-us" }}">
+<html lang="{{ .Site.LanguageCode | default "en-us" }}" id="top">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -49,13 +49,11 @@
   <link rel="stylesheet" href="{{ "css/styles.css" | relURL }}">
 </head>
 <body>
-  {{ partial "site-a11y-strip.html" . }}
+  {{ partial "site-header.html" . }}
   <div class="shell">
-    {{ partial "site-header.html" . }}
     {{ block "main" . }}{{ end }}
-    {{ partial "site-footer.html" . }}
-    <div class="site-deco" aria-hidden="true" title=""></div>
   </div>
+  {{ partial "site-footer.html" . }}
   <script src="{{ "js/site.js" | relURL }}" defer></script>
 </body>
 </html>
