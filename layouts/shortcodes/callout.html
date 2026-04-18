@@ -1,4 +1,4 @@
-{{- $allowed := slice "default" "info" "note" "warning" -}}
+{{- $allowed := slice "default" "info" "note" "warning" "caution" -}}
 {{- $raw := .Get "type" | default (.Get 0) | default "default" | lower -}}
 {{- $type := cond (in $allowed $raw) $raw "default" -}}
 <aside class="callout callout--{{ $type }}" role="note">

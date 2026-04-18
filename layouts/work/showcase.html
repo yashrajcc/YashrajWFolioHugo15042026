@@ -19,9 +19,6 @@
 {{- end -}}
 <div class="showcase-page">
   <nav class="showcase-chrome" aria-label="Page tools">
-    <div class="showcase-chrome__tabs">
-      <span class="showcase-chrome__tab showcase-chrome__tab--active">{{ .Title }}</span>
-    </div>
     <div class="showcase-chrome__row">
       <a class="showcase-chrome__back" href="{{ site.Home.RelPermalink }}">
         <span class="showcase-chrome__back-icon" aria-hidden="true">‹</span>
@@ -68,6 +65,34 @@
       <h1 class="showcase-doc-title">{{ .Title }}</h1>
       {{- with .Params.summary -}}
       <p class="showcase-doc-lede">{{ . }}</p>
+      {{- end -}}
+      {{- if or .Params.role .Params.timeline .Params.team -}}
+      <dl class="showcase-doc-meta">
+        {{- with .Params.role -}}
+        <div class="showcase-doc-meta__row">
+          <dt>Role</dt>
+          <dd>{{ . }}</dd>
+        </div>
+        {{- end -}}
+        {{- with .Params.timeline -}}
+        <div class="showcase-doc-meta__row">
+          <dt>Timeline</dt>
+          <dd>{{ . }}</dd>
+        </div>
+        {{- end -}}
+        {{- with .Params.team -}}
+        <div class="showcase-doc-meta__row">
+          <dt>Team</dt>
+          <dd>
+            {{- if reflect.IsSlice . -}}
+            {{- delimit . ", " -}}
+            {{- else -}}
+            {{- . -}}
+            {{- end -}}
+          </dd>
+        </div>
+        {{- end -}}
+      </dl>
       {{- end -}}
       {{ .Content }}
     </article>

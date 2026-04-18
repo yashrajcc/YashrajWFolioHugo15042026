@@ -4,6 +4,9 @@ title = "{{ replace .Name "-" " " | title }}"
 date = {{ .Date.Format "2006-01-02" }}
 summary = ""
 role = ""
+# Optional (showcase layout): shown in a Role / Timeline / Team panel under the summary.
+# timeline = ""
+# team = ""       # string, or TOML array: team = ["PM", "Eng"]
 image = ""
 image_alt = ""
 tags = []

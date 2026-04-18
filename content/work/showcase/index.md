@@ -6,6 +6,9 @@ showcase_skip_anchor: "#mocks"
 summary: "Dummy detail page for navigation, TOC, Goldmark, and shortcodes."
 date: 2026-01-15
 role: "Reference"
+# Optional meta (showcase layout): rendered under the summary when any are set.
+# timeline: "Jan – Mar 2026"
+# team: "Solo"   # or YAML list, e.g. team: ["PM", "Eng"]
 tags:
   - Hugo
   - Template

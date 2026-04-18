@@ -6,6 +6,8 @@ relativeURLs = false
 
 [markup]
   # Authored content only: allows shortcode HTML (callout, quote) without Goldmark replacing it.
+  [markup.goldmark.extensions]
+    footnote = true
   [markup.goldmark.renderer]
     unsafe = true
   [markup.tableOfContents]

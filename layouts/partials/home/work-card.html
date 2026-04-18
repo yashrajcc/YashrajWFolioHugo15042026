@@ -9,8 +9,19 @@
 {{- $t := $title | default "?" -}}
 {{- $ini := upper (substr $t 0 2) -}}
 {{- if lt (len $t) 2 -}}{{- $ini = upper $t -}}{{- end -}}
-<article class="card home-work-card{{ if eq $variant "featured" }} home-work-card--featured{{ else }} home-work-card--other{{ end }}">
+{{- $disabled := $card.disabled | default false -}}
+{{- $tip := $card.disabled_message | default "Work in progress — this case study will be updated soon." -}}
+<article class="card home-work-card{{ if eq $variant "featured" }} home-work-card--featured{{ else }} home-work-card--other{{ end }}{{ if $disabled }} home-work-card--disabled{{ end }}">
+  {{- if $disabled -}}
+  <div
+    class="home-work-card__shell"
+    role="group"
+    aria-label="{{ $title }}. {{ $tip }}"
+    title="{{ $tip }}"
+  >
+  {{- else -}}
   <a class="home-work-card__link" href="{{ $card.url | relURL }}">
+  {{- end -}}
     {{- if $imgRes -}}
     <div class="home-work-card__media">
       <img
@@ -29,14 +40,16 @@
     </div>
     {{- end -}}
     <div class="home-work-card__body">
-      {{- if or $card.company $card.role $card.year -}}
+      {{- $when := $card.timeline | default $card.year -}}
+      {{- if or $card.company $card.role $when -}}
       <div class="home-work-card__meta">
         {{- with $card.company -}}<span class="card-badge">{{ . }}</span>{{- end -}}
-        {{- if or $card.role $card.year -}}
+        {{- if $card.wip -}}<span class="card-badge card-badge--wip">In progress</span>{{- end -}}
+        {{- if or $card.role $when -}}
         <span class="home-work-card__meta-line">
           {{- with $card.role -}}{{ . }}{{- end -}}
-          {{- if and $card.role $card.year -}} · {{ end -}}
-          {{- with $card.year -}}{{ . }}{{- end -}}
+          {{- if and $card.role $when -}} · {{ end -}}
+          {{- with $when -}}{{ . }}{{- end -}}
         </span>
         {{- end -}}
       </div>
@@ -44,5 +57,9 @@
       <h4 class="home-work-card__title">{{ $title }}</h4>
       {{- with $card.summary -}}<p class="home-work-card__summary">{{ . }}</p>{{- end -}}
     </div>
+  {{- if $disabled -}}
+  </div>
+  {{- else -}}
   </a>
+  {{- end -}}
 </article>

@@ -19,7 +19,11 @@
         <ul class="site-footer__list" role="list">
           {{- range $featured -}}
           <li>
+            {{- if .disabled -}}
+            <span class="site-footer__link site-footer__link--disabled" title="{{ .disabled_message | default "Work in progress — coming soon." }}">{{ .title }}</span>
+            {{- else -}}
             <a class="site-footer__link" href="{{ .url | relURL }}">{{ .title }}</a>
+            {{- end -}}
           </li>
           {{- end -}}
         </ul>

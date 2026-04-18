@@ -1,0 +1,14 @@
+{{- $email := site.Params.contact_email | default "" -}}
+<aside class="showcase-end-card" aria-labelledby="case-contact-card-label">
+  <p id="case-contact-card-label" class="showcase-end-card__title">Want to know more?</p>
+  <p class="showcase-end-card__legal">
+    Thank you for reviewing this material. The narrative and visuals above are <strong>illustrative or otherwise cleared for public sharing</strong> only; further facts, designs, metrics, and client context may be <strong>withheld under confidentiality obligations</strong>, including any applicable non‑disclosure agreement. Nothing on this page constitutes an offer, endorsement, or representation by any employer or client.
+  </p>
+  <p class="showcase-end-card__cta-line">
+    {{- if ne $email "" -}}
+    If you would like to discuss this work—or similar problems—in an appropriate forum, you can reach me at <a href="mailto:{{ $email }}">{{ $email }}</a>.
+    {{- else -}}
+    If you would like to discuss this work—or similar problems—in an appropriate forum, please reach out through the contact options on this site.
+    {{- end -}}
+  </p>
+</aside>
