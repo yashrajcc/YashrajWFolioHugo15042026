@@ -1,6 +1,8 @@
 ---
 title: "Hugo layout showcase"
 layout: showcase
+showcase_skip_label: "Skip to mocks"
+showcase_skip_anchor: "#mocks"
 summary: "Dummy detail page for navigation, TOC, Goldmark, and shortcodes."
 date: 2026-01-15
 role: "Reference"
@@ -18,11 +20,6 @@ aside_tidbits:
       These boxes come from `aside_tidbits` in front matter. Each `body` is markdown (`RenderString`).
   - title: "Layout"
     body: "Three columns on wide viewports: **Page contents** → article → tidbits. Single column stack on small screens."
-markup:
-  tableOfContents:
-    endLevel: 4
-    ordered: false
-    startLevel: 2
 ---
 
 ## Overview

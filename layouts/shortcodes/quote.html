@@ -1,0 +1,10 @@
+<figure class="quote-block">
+  <blockquote class="quote-block__body prose">{{ .Page.RenderString (strings.TrimSpace .Inner) }}</blockquote>
+  {{- if or (.Get "author") (.Get "role") -}}
+  <figcaption class="quote-block__cite">
+    {{- with .Get "author" -}}<span class="quote-block__author">{{ . }}</span>{{- end -}}
+    {{- if and (.Get "author") (.Get "role") -}}<span class="quote-block__sep" aria-hidden="true"> · </span>{{- end -}}
+    {{- with .Get "role" -}}<span class="quote-block__role">{{ . }}</span>{{- end -}}
+  </figcaption>
+  {{- end -}}
+</figure>

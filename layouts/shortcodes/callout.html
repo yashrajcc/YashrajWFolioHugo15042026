@@ -1,0 +1,6 @@
+{{- $allowed := slice "default" "info" "note" "warning" -}}
+{{- $raw := .Get "type" | default (.Get 0) | default "default" | lower -}}
+{{- $type := cond (in $allowed $raw) $raw "default" -}}
+<aside class="callout callout--{{ $type }}" role="note">
+  <div class="callout__inner prose">{{ .Page.RenderString (strings.TrimSpace .Inner) }}</div>
+</aside>

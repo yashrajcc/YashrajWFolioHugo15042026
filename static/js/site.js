@@ -56,7 +56,8 @@
 
   var shareBtn = document.getElementById("showcase-share");
   if (shareBtn) {
-    var shareLabel = shareBtn.textContent;
+    var defaultAria = shareBtn.getAttribute("aria-label") || "Share this page";
+    var defaultTitle = shareBtn.getAttribute("title") || "Share";
     shareBtn.addEventListener("click", function () {
       var url = shareBtn.getAttribute("data-share-url") || window.location.href;
       var title = shareBtn.getAttribute("data-share-title") || document.title;
@@ -66,9 +67,11 @@
       }
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(url).then(function () {
-          shareBtn.textContent = "Copied link";
+          shareBtn.setAttribute("aria-label", "Link copied");
+          shareBtn.setAttribute("title", "Link copied");
           setTimeout(function () {
-            shareBtn.textContent = shareLabel;
+            shareBtn.setAttribute("aria-label", defaultAria);
+            shareBtn.setAttribute("title", defaultTitle);
           }, 2000);
         }).catch(function () {
           window.prompt("Copy URL:", url);

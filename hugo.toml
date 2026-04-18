@@ -5,6 +5,9 @@ disableKinds = ['taxonomy', 'term']
 relativeURLs = false
 
 [markup]
+  # Authored content only: allows shortcode HTML (callout, quote) without Goldmark replacing it.
+  [markup.goldmark.renderer]
+    unsafe = true
   [markup.tableOfContents]
     endLevel = 4
     ordered = false
