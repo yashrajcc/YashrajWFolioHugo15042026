@@ -8,36 +8,7 @@
     <p class="home-work__intro">{{ . }}</p>
     {{- end -}}
   </header>
-  <div class="home-work-filter" role="tablist" aria-label="Filter projects by category">
-    <button
-      type="button"
-      class="home-work-filter__tab"
-      role="tab"
-      id="work-tab-all"
-      data-work-filter="all"
-      aria-controls="work-bands"
-      aria-selected="true"
-    >{{ .Params.home_work_filter_all | default "All work" }}</button>
-    <button
-      type="button"
-      class="home-work-filter__tab"
-      role="tab"
-      id="work-tab-featured"
-      data-work-filter="featured"
-      aria-controls="work-bands"
-      aria-selected="false"
-    >{{ .Params.home_featured_work_title | default "Featured work" }}</button>
-    <button
-      type="button"
-      class="home-work-filter__tab"
-      role="tab"
-      id="work-tab-other"
-      data-work-filter="other"
-      aria-controls="work-bands"
-      aria-selected="false"
-    >{{ .Params.home_other_work_title | default "In other worlds" }}</button>
-  </div>
-  <div id="work-bands" class="home-work-bands" data-work-active="all">
+  <div class="home-work-bands">
     {{ partial "home/work-featured.html" . }}
     {{ partial "home/work-other.html" . }}
   </div>

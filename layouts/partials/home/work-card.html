@@ -1,0 +1,48 @@
+{{- $card := .card -}}
+{{- $variant := .variant | default "other" -}}
+{{- $path := strings.TrimPrefix "/" ($card.image | default "") -}}
+{{- $imgRes := false -}}
+{{- if ne $path "" -}}
+  {{- with resources.Get $path -}}{{- $imgRes = . -}}{{- end -}}
+{{- end -}}
+{{- $title := $card.title | default "" -}}
+{{- $t := $title | default "?" -}}
+{{- $ini := upper (substr $t 0 2) -}}
+{{- if lt (len $t) 2 -}}{{- $ini = upper $t -}}{{- end -}}
+<article class="card home-work-card{{ if eq $variant "featured" }} home-work-card--featured{{ else }} home-work-card--other{{ end }}">
+  <a class="home-work-card__link" href="{{ $card.url | relURL }}">
+    {{- if $imgRes -}}
+    <div class="home-work-card__media">
+      <img
+        class="home-work-card__img"
+        src="{{ $imgRes.RelPermalink }}"
+        alt="{{ $card.image_alt | default $title }}"
+        width="800"
+        height="280"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+    {{- else if $path -}}
+    <div class="home-work-card__media home-work-card__media--placeholder" aria-hidden="true">
+      <span class="home-work-card__initials">{{ $ini }}</span>
+    </div>
+    {{- end -}}
+    <div class="home-work-card__body">
+      {{- if or $card.company $card.role $card.year -}}
+      <div class="home-work-card__meta">
+        {{- with $card.company -}}<span class="card-badge">{{ . }}</span>{{- end -}}
+        {{- if or $card.role $card.year -}}
+        <span class="home-work-card__meta-line">
+          {{- with $card.role -}}{{ . }}{{- end -}}
+          {{- if and $card.role $card.year -}} · {{ end -}}
+          {{- with $card.year -}}{{ . }}{{- end -}}
+        </span>
+        {{- end -}}
+      </div>
+      {{- end -}}
+      <h4 class="home-work-card__title">{{ $title }}</h4>
+      {{- with $card.summary -}}<p class="home-work-card__summary">{{ . }}</p>{{- end -}}
+    </div>
+  </a>
+</article>

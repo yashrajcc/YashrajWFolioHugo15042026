@@ -1,31 +1,10 @@
 {{- $cards := .Params.home_other_cards | default slice -}}
 {{- if gt (len $cards) 0 -}}
-<div class="home-work-band home-work-band--other" data-work-band="other">
+<div class="home-work-band home-work-band--other">
   <h3 id="work-other-heading" class="section-heading">{{ .Params.home_other_work_title | default "In other worlds" }}</h3>
   <div class="home-work-other__grid">
     {{- range $cards -}}
-    <article class="card card--home-other">
-      <a class="card--home-work__link card--home-other__link" href="{{ .url | relURL }}">
-        {{- if .image -}}
-        <div class="card--home-other__media">
-          <img
-            class="card--home-other__thumb"
-            src="{{ .image | relURL }}"
-            alt="{{ .image_alt | default .title }}"
-            width="400"
-            height="240"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-        {{- end -}}
-        <div class="card--home-other__body">
-          {{- with .company -}}<span class="card-badge">{{ . }}</span>{{- end -}}
-          <h4 class="card--home-other__title">{{ .title }}</h4>
-          <p class="card--home-other__summary">{{ .summary }}</p>
-        </div>
-      </a>
-    </article>
+    {{- partial "home/work-card.html" (dict "card" . "variant" "other") -}}
     {{- end -}}
   </div>
 </div>
