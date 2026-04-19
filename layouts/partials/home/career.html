@@ -1,35 +1,46 @@
 {{- $c := .Params.home_career -}}
 {{- if $c -}}
+{{- $timeline := $c.timeline | default slice -}}
+{{- if eq (len $timeline) 0 -}}
+  {{- $merged := slice -}}
+  {{- range $c.featured_row | default slice -}}{{- $merged = $merged | append . -}}{{- end -}}
+  {{- range $c.row_five | default slice -}}{{- $merged = $merged | append . -}}{{- end -}}
+  {{- $timeline = $merged -}}
+{{- end -}}
 <section class="section section-career home-section" id="career" aria-labelledby="career-heading">
   <header class="career-intro">
-    <h2 id="career-heading" class="career-intro__title">{{ $c.title }}</h2>
+    <h2 id="career-heading" class="career-intro__title type-band-title">{{ $c.title }}</h2>
     <p class="career-intro__sub">{{ $c.subtitle }}</p>
   </header>
 
-  <div class="career-grid career-grid--top">
-    {{- range $c.featured_row -}}
-    <article class="career-card">
-      <div class="career-card__row">
-        <span class="career-card__org">{{ .org }}</span>
-        <span class="career-card__period">{{ .period }}</span>
+  {{- if gt (len $timeline) 0 -}}
+  <div class="career-strip" role="list">
+    {{- range $timeline -}}
+    {{- $org := .org | default "" -}}
+    {{- $ini := upper (substr $org 0 2) -}}
+    {{- if lt (len $org) 2 -}}{{- $ini = upper $org -}}{{- end -}}
+    {{- $logo := strings.TrimSpace (.logo | default "") -}}
+    <article class="career-strip-card" role="listitem">
+      <div class="career-strip-card__logo">
+        {{- if ne $logo "" -}}
+        <img
+          class="career-strip-card__mark"
+          src="{{ $logo | relURL }}"
+          alt="{{ $org }} logo"
+          loading="lazy"
+          decoding="async"
+        />
+        {{- else -}}
+        <span class="career-strip-card__initials">{{ $ini }}</span>
+        {{- end -}}
       </div>
-      <p class="career-card__role">{{ .role }}</p>
-      <p class="career-card__body">{{ .body }}</p>
+      <h3 class="career-strip-card__org">{{ $org }}</h3>
+      <p class="career-strip-card__period">{{ .period }}</p>
+      <p class="career-strip-card__role">{{ .role }}</p>
+      <p class="career-strip-card__body">{{ .body }}</p>
     </article>
     {{- end -}}
   </div>
-
-  <div class="career-grid career-grid--five">
-    {{- range $c.row_five -}}
-    <article class="career-card career-card--compact">
-      <div class="career-card__row">
-        <span class="career-card__org">{{ .org }}</span>
-        <span class="career-card__period">{{ .period }}</span>
-      </div>
-      <p class="career-card__role">{{ .role }}</p>
-      <p class="career-card__body">{{ .body }}</p>
-    </article>
-    {{- end -}}
-  </div>
+  {{- end -}}
 </section>
 {{- end -}}

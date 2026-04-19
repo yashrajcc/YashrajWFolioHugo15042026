@@ -5,7 +5,7 @@ description: "UX designer focused on cloud infrastructure, developer experiences
 home_hero_greeting: "Hi, Namaskar, ನಮಸ್ಕಾರ"
 home_hero_eyebrow: "I'm Yashraj Wadalkar"
 home_hero_headline: "Building the future of cloud infrastructure and developer experiences."
-home_hero_sub: "UX designer at Google — I turn dense platforms into flows people can trust, then prototype ideas in code."
+home_hero_sub: 'UX designer & tinkerer at large @ Google, teaching myself how to code.<br /><span class="hero-sub__line2">Transitioning from the <span class="hero-sub__design">design-ing</span> to <span class="hero-sub__engineer">engineer-ing</span>.</span>'
 home_hero_primary_label: "View work"
 home_hero_primary_url: "#work"
 home_hero_secondary_label: "Get in touch"
@@ -72,7 +72,7 @@ home_other_cards:
     url: "work/m365-msme-india/"
 
 home_about:
-  portrait: "/images/about-portrait.png"
+  portrait: "/images/yashrajFace.jpeg"
   portrait_alt: "Portrait of Yashraj Wadalkar"
   about_title: "About Me"
   about_paragraphs:
@@ -89,40 +89,70 @@ home_about:
 home_career:
   title: "My Career Journey"
   subtitle: |
-    An ambient, scroll-driven constellation mapping my path through different roles, projects, and organizations. This is not a resume, but a narrative space to explore my experience.
-  featured_row:
+    Roles and projects in order, newest first.
+  timeline:
     - org: Google
       period: "2022 - Present"
       role: UX Designer II
       body: Designing developer experiences for core compute infrastructure and modernization tooling.
+      logo: "/images/career/google.png"
     - org: Microsoft IDC
       period: "2021"
       role: UX Design Intern
       body: Redesigned core experiences for Azure DevOps, focusing on improving usability for enterprise-scale teams.
-  row_five:
-    - org: Passion Projects
-      period: Undergrad '21
-      role: Student Work
-      body: "Savitri: Redesigning education access in peri-urban contexts, and pIndicator: a transport app redesign for Pune."
+      logo: "/images/career/microsoft.png"
     - org: CJAP, Bhopal
       period: "2020"
       role: UX Design Intern
       body: Built interactive dashboards for public policy and redesigned the organization's digital stack.
+      logo: "/images/career/cpa.png"
     - org: Design Beku
       period: "2020"
       role: UX Design Intern
       body: Led collaborations with NGOs to mitigate vaccine hesitancy through targeted IEC content.
+      logo: "/images/career/designbeku.png"
     - org: Centre for Policy Research
       period: "2019"
       role: UX Design Intern
       body: Created materials to influence bureaucratic decision-making on nutrition financing in Tier-2 India.
-    - org: Shramev Bharath
-      period: "2019"
-      role: UX Design Intern
-      body: Designed an HRMS for unorganized sector MSMEs for a pre-seed, YC final-round startup.
+      logo: "/images/career/cpr.png"
 
 home_writing:
   title: "Writing"
-  intro: "Longer notes on design, infrastructure, and side projects — coming soon."
-  items: []
+  intro: "Longer notes on design, infrastructure, and the social sciences — published on Medium."
+  items:
+    - title: "Reunification of Italy, DevOps, and an ode to the social sciences"
+      url: "https://medium.com/@yashraj.cc/reunification-of-italy-devops-and-an-ode-to-the-social-sciences-0956fa800986"
+      tag: Medium
+      summary: |
+        But why is this necessary? What are you going to achieve out of this appreciation for the supposed “pseudo” science? What is humanities, but either a refuge or accessory/hobby to the “real” sciences or a barrage of the South Delhi elites, training their kids for MUN, while they themselves mistake their English speaking prowess for “international relations”.
+    - title: "Mamdani vs मिसाळ (Misal)"
+      url: "https://medium.com/@yashraj.cc/mamdani-vs-मिसाळ-misal-b415c5631560"
+      tag: Medium
+      summary: |
+        But again, why does Mamdani matter, especially against, Raju Misal?
+
+        A democratic socialist, after winning the NYC mayoral polls, Zohran Mamdani played the Dhoom theme in his victory speech. An anthem of a heist film to announce his “rebellion” against the old guard, and the beginning of the new era.
+    - title: "On the modalities of interaction — interface engineering and building design"
+      url: "https://medium.com/@yashraj.cc/on-the-modalities-of-interaction-interface-engineering-and-building-design-7eb3ae5db8e6"
+      tag: Medium
+      summary: |
+        What I’m in fact saying, whether Ruby on Rails / Django / Flask / or any of these database wrappers serving on monoliths / clouds / vps’ in itself a political act. Or to ask the question is a political act.
+
+home_tech_notes:
+  title: "Yashraj's Tech Notes"
+  intro: "Shorter technical notes on tooling, infrastructure, and small builds — from my Substack."
+  card_variant: dense
+  media_shape: square
+  items:
+    - title: "What I learnt from failing at building a CRUD blog 3 times."
+      url: "https://notes.yashraj.cc/"
+      image: "/images/tech-notes/crud-blog-3-times.png"
+      image_alt: "Cover art — fountain pen and ink bottle with title about failing at building a CRUD blog three times."
+      hide_visual_title: true
+    - title: "Learn in public — notes.yashraj.cc, Substack, and social links"
+      url: "https://yashrajwadalkar.substack.com/"
+      image: "/images/tech-notes/notes-learn-in-public.png"
+      image_alt: "Cover card — learn in public, with notes.yashraj.cc and Substack URLs."
+      hide_visual_title: true
 ---

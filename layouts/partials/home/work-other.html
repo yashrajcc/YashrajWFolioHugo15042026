@@ -1,7 +1,7 @@
 {{- $cards := .Params.home_other_cards | default slice -}}
 {{- if gt (len $cards) 0 -}}
 <div class="home-work-band home-work-band--other">
-  <h3 id="work-other-heading" class="section-heading">{{ .Params.home_other_work_title | default "In other worlds" }}</h3>
+  <h3 id="work-other-heading" class="home-work-band__heading">{{ .Params.home_other_work_title | default "In other worlds" }}</h3>
   <div class="home-work-other__grid">
     {{- range $cards -}}
     {{- partial "home/work-card.html" (dict "card" . "variant" "other") -}}

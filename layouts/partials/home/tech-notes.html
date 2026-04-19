@@ -1,0 +1,23 @@
+{{- $t := .Params.home_tech_notes -}}
+{{- if $t -}}
+{{- $items := $t.items | default slice -}}
+{{- if or $t.intro (gt (len $items) 0) -}}
+<section class="section home-section home-tech-notes" id="tech-notes" aria-labelledby="tech-notes-heading">
+  <header class="home-tech-notes__header">
+    <h2 id="tech-notes-heading" class="home-tech-notes__title type-band-title">{{ $t.title | default "Yashraj's Tech Notes" }}</h2>
+    {{- with $t.intro -}}
+    <div class="home-tech-notes__intro type-body-lead">{{ . | markdownify }}</div>
+    {{- end -}}
+  </header>
+  {{- if gt (len $items) 0 -}}
+  {{- $v := $t.card_variant | default "dense" -}}
+  {{- $shape := $t.media_shape | default "square" -}}
+  <div class="home-tech-notes__grid{{ if eq $v "dense" }} home-tech-notes__grid--dense{{ end }}{{ if and (eq $v "dense") (eq $shape "square") }} home-tech-notes__grid--square-media{{ end }}">
+    {{- range $items -}}
+    {{- partial "home/feed-card.html" (dict "item" . "variant" $v "media_shape" $shape) -}}
+    {{- end -}}
+  </div>
+  {{- end -}}
+</section>
+{{- end -}}
+{{- end -}}

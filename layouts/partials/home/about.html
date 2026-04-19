@@ -3,7 +3,7 @@
 <section class="section section-about home-section" id="about" aria-labelledby="about-heading">
   <div class="about-panel">
     <div class="about-panel__visual">
-      {{- $img := $a.portrait | default "/images/about-portrait.png" -}}
+      {{- $img := $a.portrait | default "/images/yashrajFace.jpeg" -}}
       <img
         class="about-panel__photo"
         src="{{ $img | relURL }}"
@@ -15,7 +15,7 @@
       />
     </div>
     <div class="about-panel__content">
-      <h2 id="about-heading" class="about-panel__h">{{ $a.about_title }}</h2>
+      <h2 id="about-heading" class="about-panel__h type-band-title">{{ $a.about_title }}</h2>
       <div class="about-panel__body">
         {{- range $a.about_paragraphs -}}
         <p>{{ . }}</p>
@@ -40,13 +40,18 @@
         {{- $showResume = true -}}
       {{- end -}}
       {{- if $showResume -}}
-      <a class="resume-card" href="{{ $resumeURL }}"{{ if hasPrefix $resumeURL "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>
-        <div class="resume-card__text">
-          <span class="resume-card__title">{{ $a.resume.title }}</span>
-          <span class="resume-card__sub">{{ $a.resume.subtitle }}</span>
-        </div>
-        <span class="resume-card__arrow" aria-hidden="true">→</span>
-      </a>
+      <div class="about-resume">
+        <a class="resume-card" href="{{ $resumeURL }}" target="_blank" rel="noopener noreferrer">
+          <div class="resume-card__text">
+            <span class="resume-card__title">{{ $a.resume.title }}</span>
+            <span class="resume-card__sub">{{ $a.resume.subtitle }}</span>
+          </div>
+          <span class="resume-card__arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="about-resume-tab" href="{{ $resumeURL }}" target="_blank" rel="noopener noreferrer">
+          Open résumé PDF in a new tab<span class="about-resume-tab__icon" aria-hidden="true"> ↗</span>
+        </a>
+      </div>
       {{- end -}}
     </div>
   </div>

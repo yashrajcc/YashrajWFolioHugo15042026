@@ -3,17 +3,20 @@
 {{- $items := $w.items | default slice -}}
 {{- if or $w.intro (gt (len $items) 0) -}}
 <section class="section home-section home-writing" id="writing" aria-labelledby="writing-heading">
-  <h2 id="writing-heading" class="section-heading">{{ $w.title | default "Writing" }}</h2>
-  {{- with $w.intro -}}<p class="home-writing__intro">{{ . }}</p>{{- end -}}
-  {{- if gt (len $items) 0 -}}
-  <ul class="home-writing__list">
-    {{- range $items -}}
-    <li>
-      <a href="{{ .url | relURL }}">{{ .title }}</a>
-      {{- with .summary -}}<p class="home-writing__summary">{{ . }}</p>{{- end -}}
-    </li>
+  <header class="home-writing__header">
+    <h2 id="writing-heading" class="home-writing__title type-band-title">{{ $w.title | default "Writing" }}</h2>
+    {{- with $w.intro -}}
+    <div class="home-writing__intro type-body-lead">{{ . | markdownify }}</div>
     {{- end -}}
-  </ul>
+  </header>
+  {{- if gt (len $items) 0 -}}
+  {{- $v := $w.card_variant | default "default" -}}
+  {{- $shape := $w.media_shape | default "bar" -}}
+  <div class="home-writing__grid{{ if eq $v "dense" }} home-writing__grid--dense{{ end }}{{ if and (eq $v "dense") (eq $shape "square") }} home-writing__grid--square-media{{ end }}">
+    {{- range $items -}}
+    {{- partial "home/feed-card.html" (dict "item" . "variant" $v "media_shape" $shape) -}}
+    {{- end -}}
+  </div>
   {{- end -}}
 </section>
 {{- end -}}

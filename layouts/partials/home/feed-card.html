@@ -1,0 +1,95 @@
+{{- $item := .item -}}
+{{- $variant := .variant | default "default" -}}
+{{- $dense := eq $variant "dense" -}}
+{{- $mediaShape := .media_shape | default "bar" -}}
+{{- $squareMedia := and $dense (eq $mediaShape "square") -}}
+{{- $title := $item.title | default "" -}}
+{{- $t := $title | default "?" -}}
+{{- $ini := upper (substr $t 0 2) -}}
+{{- if lt (len $t) 2 -}}{{- $ini = upper $t -}}{{- end -}}
+{{- $rawURL := strings.TrimSpace ($item.url | default "") -}}
+{{- if eq $rawURL "" -}}{{- $rawURL = "#" -}}{{- end -}}
+{{- $href := $rawURL -}}
+{{- if and $rawURL (not (hasPrefix $rawURL "http://")) (not (hasPrefix $rawURL "https://")) (ne $rawURL "#") -}}
+  {{- $href = $rawURL | relURL -}}
+{{- end -}}
+{{- $path := strings.TrimSpace ($item.image | default "") -}}
+{{- $imgRes := false -}}
+{{- if and $path (not (hasPrefix $path "http://")) (not (hasPrefix $path "https://")) -}}
+  {{- $try := strings.TrimPrefix "/" $path -}}
+  {{- with resources.Get $try -}}{{- $imgRes = . -}}{{- end -}}
+{{- end -}}
+{{- $imgURL := "" -}}
+{{- if or (hasPrefix $path "http://") (hasPrefix $path "https://") -}}
+  {{- $imgURL = $path -}}
+{{- else if $imgRes -}}
+  {{- $imgURL = $imgRes.RelPermalink -}}
+{{- else if ne $path "" -}}
+  {{- $imgURL = $path | relURL -}}
+{{- end -}}
+{{- $cta := strings.TrimSpace ($item.cta | default "") -}}
+{{- if $dense -}}
+  {{- if eq $cta "" -}}{{- $cta = "Open" -}}{{- end -}}
+{{- else -}}
+  {{- if eq $cta "" -}}
+    {{- if strings.Contains $rawURL "medium.com" -}}{{- $cta = "Read on Medium" -}}
+    {{- else if strings.Contains $rawURL "substack.com" -}}{{- $cta = "Read on Substack" -}}
+    {{- else -}}{{- $cta = "Read more" -}}{{- end -}}
+  {{- end -}}
+{{- end -}}
+<article class="card home-feed-card{{ if $dense }} home-feed-card--dense{{ end }}{{ if $squareMedia }} home-feed-card--square-media{{ end }}">
+  <a class="home-feed-card__link" href="{{ $href }}"{{ if or (hasPrefix $rawURL "http://") (hasPrefix $rawURL "https://") }} rel="noopener noreferrer" target="_blank"{{ end }}>
+    {{- if $dense -}}
+    <div class="home-feed-card__media home-feed-card__media--dense">
+      {{- if ne $imgURL "" -}}
+      <img
+        class="home-feed-card__img"
+        src="{{ $imgURL }}"
+        alt="{{ $item.image_alt | default $title }}"
+        width="{{ if $squareMedia }}480{{ else }}400{{ end }}"
+        height="{{ if $squareMedia }}480{{ else }}120{{ end }}"
+        loading="lazy"
+        decoding="async"
+      />
+      {{- else -}}
+      <span class="home-feed-card__initials home-feed-card__initials--dense">{{ $ini }}</span>
+      {{- end -}}
+    </div>
+    <div class="home-feed-card__body home-feed-card__body--dense">
+      <h3 class="home-feed-card__title{{ if $item.hide_visual_title }} visually-hidden{{ end }}">{{ $title }}</h3>
+    </div>
+    <span class="home-feed-card__cta home-feed-card__cta--dense">{{ $cta }}</span>
+    {{- else -}}
+    {{- if ne $imgURL "" -}}
+    <div class="home-feed-card__media">
+      <img
+        class="home-feed-card__img"
+        src="{{ $imgURL }}"
+        alt="{{ $item.image_alt | default $title }}"
+        width="800"
+        height="200"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+    {{- else if ne $path "" -}}
+    <div class="home-feed-card__media home-feed-card__media--placeholder" aria-hidden="true">
+      <span class="home-feed-card__initials">{{ $ini }}</span>
+    </div>
+    {{- end -}}
+    <div class="home-feed-card__body">
+      {{- if or $item.tag $item.date -}}
+      <div class="home-feed-card__meta">
+        {{- with $item.tag -}}<span class="card-badge">{{ . }}</span>{{- end -}}
+        {{- with $item.date -}}<span class="home-feed-card__meta-line">{{ . }}</span>{{- end -}}
+      </div>
+      {{- end -}}
+      <h3 class="home-feed-card__title">{{ $title }}</h3>
+      {{- with $item.summary -}}<div class="home-feed-card__summary">{{ . | markdownify }}</div>{{- end -}}
+    </div>
+    {{- if ne $cta "" -}}
+    <span class="home-feed-card__cta">{{ $cta }}</span>
+    {{- end -}}
+    {{- end -}}
+  </a>
+</article>

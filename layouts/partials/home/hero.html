@@ -4,7 +4,9 @@
     {{- with $p.home_hero_greeting -}}<p class="hero-greeting">{{ . }}</p>{{- end -}}
     {{- with $p.home_hero_eyebrow -}}<p class="hero-eyebrow">{{ . }}</p>{{- end -}}
     {{- with $p.home_hero_headline -}}<h1 class="hero-headline">{{ . }}</h1>{{- end -}}
-    {{- with $p.home_hero_sub -}}<p class="hero-sub">{{ . }}</p>{{- end -}}
+    {{- with $p.home_hero_sub -}}
+    <div class="hero-sub">{{ . | markdownify }}</div>
+    {{- end -}}
     <div class="hero-actions">
       {{- $primaryURL := $p.home_hero_primary_url | default "#work" -}}
       {{- $primaryHref := cond (hasPrefix $primaryURL "#") $primaryURL ($primaryURL | relURL) -}}

@@ -17,7 +17,7 @@ relativeURLs = false
 
 [params]
   author = "Yashraj Wadalkar"
-  brand = "yashraj.cc"
+  brand = "work.yashraj.cc"
   resume_url = "/resume.pdf"
   contact_email = "hello@yashraj.cc"
 
@@ -52,13 +52,18 @@ relativeURLs = false
   anchor = true
 
 [[params.nav]]
+  name = "Work"
+  url = "#work"
+  anchor = true
+
+[[params.nav]]
   name = "Writing"
   url = "#writing"
   anchor = true
 
 [[params.nav]]
-  name = "Work"
-  url = "#work"
+  name = "Tech notes"
+  url = "#tech-notes"
   anchor = true
 
 [[params.nav]]

@@ -3,9 +3,9 @@
     {{- with .Params.home_work_eyebrow -}}
     <p class="home-work__eyebrow">{{ . }}</p>
     {{- end -}}
-    <h2 id="work-main-heading" class="home-work__heading">{{ .Params.home_work_section_label | default "Work" }}</h2>
+    <h2 id="work-main-heading" class="home-work__heading type-band-title">{{ .Params.home_work_section_label | default "Work" }}</h2>
     {{- with .Params.home_work_intro -}}
-    <p class="home-work__intro">{{ . }}</p>
+    <div class="home-work__intro type-body-lead">{{ . | markdownify }}</div>
     {{- end -}}
   </header>
   <div class="home-work-bands">
