@@ -947,6 +947,18 @@ p {
   border-radius: 50%;
 }
 
+.about-panel__currently {
+  margin-top: 0;
+}
+
+.about-panel__currently .about-resume {
+  margin-top: 18px;
+}
+
+.about-panel__currently .resume-card {
+  margin-top: 0;
+}
+
 .resume-card {
   display: flex;
   align-items: center;

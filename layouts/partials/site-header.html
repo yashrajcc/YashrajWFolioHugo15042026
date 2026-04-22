@@ -6,7 +6,8 @@
   </a>
   <nav class="site-nav" aria-label="Main">
     {{- range .Site.Params.nav -}}
-    {{- if and (eq .url "/resume.pdf") (not (fileExists "static/resume.pdf")) -}}
+    {{- $resumeURL := site.Params.resume_url | default "" -}}
+    {{- if and $resumeURL (eq .url $resumeURL) (hasPrefix $resumeURL "/") (not (fileExists (printf "static%s" $resumeURL))) -}}
       {{- continue -}}
     {{- end -}}
     {{- $href := "" -}}
