@@ -2143,6 +2143,27 @@ html.theme-dark .home-source__repo-name {
   text-decoration-thickness: 2px;
 }
 
+.home-source__license {
+  margin-top: 10px;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--muted-foreground);
+  max-width: 62ch;
+}
+
+.home-source__license a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--primary) 45%, transparent);
+  text-underline-offset: 0.2em;
+}
+
+.home-source__license a:hover {
+  color: var(--primary);
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 2px;
+}
+
 .home-source__desc > *:first-child {
   margin-top: 0;
 }
