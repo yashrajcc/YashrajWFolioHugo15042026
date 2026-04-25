@@ -10,6 +10,26 @@
   {{- $desc := $s.repo_description | default "" -}}
   {{- $preview := strings.TrimSpace ($s.preview_image | default "") -}}
   {{- $previewAlt := $s.preview_alt | default "Repository preview image" -}}
+  {{- $assetVer := now.Unix -}}
+  {{- $previewURL := "" -}}
+  {{- if ne $preview "" -}}
+    {{- if or (hasPrefix $preview "http://") (hasPrefix $preview "https://") -}}
+      {{- $previewURL = $preview -}}
+    {{- else -}}
+      {{- $path := strings.TrimPrefix "/" $preview -}}
+      {{- $imgRes := false -}}
+      {{- with resources.Get $path -}}{{- $imgRes = . -}}{{- end -}}
+      {{- if $imgRes -}}
+        {{- $previewURL = $imgRes.RelPermalink -}}
+      {{- else -}}
+        {{- $previewURL = $preview | relURL -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $previewSrc := $previewURL -}}
+  {{- if and (ne $previewURL "") (not (hasPrefix $previewURL "http://")) (not (hasPrefix $previewURL "https://")) -}}
+    {{- $previewSrc = printf "%s?v=%d" $previewURL $assetVer -}}
+  {{- end -}}
   {{- $mailto := printf "mailto:%s" (.Site.Params.contact_email | default "hello@example.com") -}}
 
   {{- if ne $repoURL "" -}}
@@ -53,10 +73,10 @@
       </div>
     </div>
 
-    {{- if ne $preview "" -}}
+    {{- if ne $previewURL "" -}}
     <div class="home-source__right" aria-label="Repository screenshot">
       <a class="home-source__screenshot" href="{{ $repoURL }}" rel="noopener noreferrer" target="_blank" aria-label="Open repository">
-        <img class="home-source__screenshot-img" src="{{ $preview | relURL }}" alt="{{ $previewAlt }}" loading="lazy" decoding="async" />
+        <img class="home-source__screenshot-img" src="{{ $previewSrc }}" alt="{{ $previewAlt }}" loading="lazy" decoding="async" />
       </a>
       <div class="home-source__help">
         New to GitHub or not sure how to fork? <a href="{{ $mailto }}">Message me</a> and I’ll help you set it up.
