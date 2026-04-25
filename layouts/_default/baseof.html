@@ -58,6 +58,9 @@
   {{ partial "site-footer.html" . }}
   {{ if hugo.IsProduction }}
     {{ partial "analytics-consent.html" . }}
+    {{- if and (eq .Section "work") (eq .Kind "page") -}}
+      {{ partial "tally-case-popup.html" . }}
+    {{- end -}}
   {{ end }}
   {{- $jsVer := now.Unix -}}
   {{- if .IsHome -}}
