@@ -57,8 +57,10 @@
   </div>
   {{ partial "site-footer.html" . }}
   {{- $jsVer := now.Unix -}}
+  {{- if .IsHome -}}
   <script src="{{ ("js/vendor/p5.min.js" | relURL) }}?v={{ $jsVer }}" defer></script>
   <script src="{{ ("js/hero-stars.js" | relURL) }}?v={{ $jsVer }}" defer></script>
+  {{- end -}}
   <script src="{{ ("js/site.js" | relURL) }}?v={{ $jsVer }}" defer></script>
 </body>
 </html>
