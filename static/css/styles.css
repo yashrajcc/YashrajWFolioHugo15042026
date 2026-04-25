@@ -4005,6 +4005,67 @@ html.theme-dark .showcase-main.prose .case-solution-card {
 }
 
 /* ============================= */
+/* 11e. HOME — CONTACT */
+/* ============================= */
+
+.home-contact__grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.9fr) minmax(0, 1.1fr);
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.home-contact__header {
+  margin: 0;
+}
+
+.home-contact__title {
+  margin: 0 0 var(--space-3);
+  font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+  line-height: 1.15;
+}
+
+.home-contact__intro {
+  margin: 0;
+  max-width: 58ch;
+  font-size: 0.95rem;
+}
+
+.home-contact__intro p {
+  margin: 0 0 0.75em;
+}
+
+.home-contact__intro p:last-child {
+  margin-bottom: 0;
+}
+
+.home-contact__card.card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.home-contact__embed {
+  display: block;
+  width: 100%;
+  height: 1px;
+  min-height: 320px;
+  border: 0;
+  background: transparent;
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .home-contact__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .home-contact__embed {
+    min-height: 380px;
+  }
+}
+
+/* ============================= */
 /* 12b. 404 */
 /* ============================= */
 
