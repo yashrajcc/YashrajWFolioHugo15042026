@@ -204,6 +204,6 @@ home_source_code:
   repo_description: "Fork it, break it, remix it — make it yours."
   repo_url: "https://github.com/"
   repo_label: "View on GitHub"
-  preview_image: "/images/source/github-repo.png"
+  preview_image: "images/work/yashrajwHugoGithub.png"
   preview_alt: "Screenshot preview of the GitHub repository page"
 ---
