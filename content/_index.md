@@ -48,7 +48,7 @@ home_featured_cards:
     disabled_message: "Work in progress — this case study will be updated soon."
     hidden: true
 
-home_other_work_title: "In other worlds"
+home_other_work_title: "Consumer side-quests"
 home_other_cards:
   - title: "Leading the strategy for NIUs for Google Maps"
     summary: "Notifications as compressed decisions at the right moment, and hyperlocal content that respects how NIUs judge relevance—one Maps story from trigger to evaluation."
@@ -58,6 +58,14 @@ home_other_cards:
     image: "images/work/geo-niu.svg"
     image_alt: "Cover gradient — NIU strategy for Google Maps"
     url: "work/google-maps-niu/"
+  - title: "CPA project website"
+    summary: "Built and shipped a public-facing site for CPA — information architecture, visual system, and responsive implementation."
+    company: "CJAP / CPA"
+    role: "UX Design Intern"
+    timeline: "2020"
+    image: "images/career/cpa.png"
+    image_alt: "CPA mark"
+    url: "work/cpa-project-website/"
   - title: "Rocket Learning × Google.org Fellowship"
     summary: "Appu — a voice-first GenAI tutor for ages 3–6: 0→1 sprint across pedagogy, India field constraints, and Pedagogical Safety-in-the-Loop for pilots at scale."
     company: "Google.org · Rocket Learning"
