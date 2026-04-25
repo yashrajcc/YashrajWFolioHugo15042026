@@ -4,6 +4,14 @@
 
   var root = document.documentElement;
   var prefersReducedMotion = false;
+  var hero = mount.closest ? mount.closest(".hero-home") : null;
+
+  // Guard against “0×0 for a moment” layout timing issues:
+  // make sure the mount is never fully collapsed in layout.
+  try {
+    mount.style.minWidth = "1px";
+    mount.style.minHeight = "1px";
+  } catch (e) {}
 
   try {
     prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -26,6 +34,13 @@
   var theme = readTheme();
   var ro = null;
   var lastBounds = null;
+
+  function readBounds() {
+    // Prefer the hero bounds (stable), fall back to mount bounds.
+    var b = hero ? hero.getBoundingClientRect() : null;
+    if (b && b.width > 10 && b.height > 10) return b;
+    return mount.getBoundingClientRect();
+  }
 
   var sketch = function (p) {
     var stars = [];
@@ -171,8 +186,27 @@
       seedStars();
 
       // Initial bounds read (ResizeObserver will keep it updated).
-      lastBounds = mount.getBoundingClientRect();
+      lastBounds = readBounds();
       resizeToBounds(lastBounds);
+
+      // Some browsers (notably Safari) can report 0×0 briefly during first layout,
+      // which would leave us stuck at a 1×1 canvas. Retry a few times until real bounds.
+      (function ensureInitialSize() {
+        var tries = 0;
+        function tick() {
+          if (tries++ > 60) return;
+          lastBounds = readBounds();
+          if (lastBounds && lastBounds.width > 10 && lastBounds.height > 10) {
+            resizeToBounds(lastBounds);
+            return;
+          }
+          // Mix rAF + timeout to survive throttling on first paint.
+          window.requestAnimationFrame(function () {
+            setTimeout(tick, 34);
+          });
+        }
+        tick();
+      })();
 
       // Passive mouse tracking — no pointer capture.
       window.addEventListener("mousemove", updateMouseNorm, { passive: true });
@@ -200,7 +234,7 @@
 
     p.windowResized = function () {
       // Safety net; primary resizing is via ResizeObserver.
-      lastBounds = mount.getBoundingClientRect();
+      lastBounds = readBounds();
       resizeToBounds(lastBounds);
     };
   };
@@ -217,10 +251,11 @@
   // Observe hero bounds for precise resizing.
   try {
     ro = new ResizeObserver(function () {
-      lastBounds = mount.getBoundingClientRect();
+      lastBounds = readBounds();
       if (instance && instance._resizeToBounds) instance._resizeToBounds(lastBounds);
     });
     ro.observe(mount);
+    if (hero) ro.observe(hero);
   } catch (e) {}
 
   // Start p5 instance.
