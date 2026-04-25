@@ -312,15 +312,22 @@ html.theme-dark .theme-toggle__svg--moon {
 .main-home {
   box-sizing: border-box;
   width: 100%;
-  padding: var(--space-6) max(var(--page-gutter), env(safe-area-inset-left)) 0 max(var(--page-gutter), env(safe-area-inset-right));
+  /* Top inset handled by `.hero-home` so the first viewport band centers cleanly */
+  padding: 0 max(var(--page-gutter), env(safe-area-inset-left)) clamp(var(--space-8), 8vh, 5.5rem) max(var(--page-gutter), env(safe-area-inset-right));
 }
 
+/* First screen: one viewport tall, content vertically centered, generous top air under the sticky header */
 .hero-home {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(200px, 380px);
-  gap: 40px;
+  gap: clamp(28px, 4vw, 40px);
   align-items: center;
-  padding-bottom: 56px;
+  align-content: center;
+  box-sizing: border-box;
+  min-height: calc(100vh - var(--header-sticky-h));
+  min-height: calc(100svh - var(--header-sticky-h));
+  padding-top: max(env(safe-area-inset-top, 0px), clamp(3.25rem, 14vh, 7rem));
+  padding-bottom: clamp(var(--space-8), 10vh, 5.5rem);
 }
 
 .hero-greeting {

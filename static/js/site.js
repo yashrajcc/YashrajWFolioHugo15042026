@@ -36,9 +36,12 @@
     setTheme("light");
   }
 
-  document.getElementById("theme-toggle")?.addEventListener("click", function () {
-    setTheme(root.classList.contains("theme-dark") ? "light" : "dark");
-  });
+  var themeToggle = document.getElementById("theme-toggle");
+  if (themeToggle) {
+    themeToggle.addEventListener("click", function () {
+      setTheme(root.classList.contains("theme-dark") ? "light" : "dark");
+    });
+  }
 
   var shareBtn = document.getElementById("showcase-share");
   if (shareBtn) {
