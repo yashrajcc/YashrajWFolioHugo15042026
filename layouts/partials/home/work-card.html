@@ -4,6 +4,17 @@
 {{- $imgRes := false -}}
 {{- if ne $path "" -}}
   {{- with resources.Get $path -}}{{- $imgRes = . -}}{{- end -}}
+
+  {{- if not $imgRes -}}
+    {{- /* Fallback: allow page-bundle images stored under content/work/<page>/ */ -}}
+    {{- $p := strings.Trim $card.url "/" -}}
+    {{- with site.GetPage $p -}}
+      {{- with .Resources.GetMatch (path.Base $path) -}}{{- $imgRes = . -}}{{- end -}}
+      {{- if not $imgRes -}}
+        {{- with .Resources.GetMatch $path -}}{{- $imgRes = . -}}{{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
 {{- end -}}
 {{- $title := $card.title | default "" -}}
 {{- $t := $title | default "?" -}}
