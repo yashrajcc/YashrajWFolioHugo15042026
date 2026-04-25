@@ -56,8 +56,9 @@
     {{ block "main" . }}{{ end }}
   </div>
   {{ partial "site-footer.html" . }}
-  <script src="{{ "js/vendor/p5.min.js" | relURL }}" defer></script>
-  <script src="{{ "js/hero-stars.js" | relURL }}" defer></script>
-  <script src="{{ "js/site.js" | relURL }}" defer></script>
+  {{- $jsVer := now.Unix -}}
+  <script src="{{ ("js/vendor/p5.min.js" | relURL) }}?v={{ $jsVer }}" defer></script>
+  <script src="{{ ("js/hero-stars.js" | relURL) }}?v={{ $jsVer }}" defer></script>
+  <script src="{{ ("js/site.js" | relURL) }}?v={{ $jsVer }}" defer></script>
 </body>
 </html>
