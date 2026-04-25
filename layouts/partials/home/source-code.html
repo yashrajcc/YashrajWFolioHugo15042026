@@ -31,6 +31,7 @@
     {{- $previewSrc = printf "%s?v=%d" $previewURL $assetVer -}}
   {{- end -}}
   {{- $mailto := printf "mailto:%s" (.Site.Params.contact_email | default "hello@example.com") -}}
+  {{- $ccBadge := resources.Get "images/work/by-nc-sa.svg" -}}
 
   {{- if ne $repoURL "" -}}
   <div class="home-source__row" role="group" aria-label="Source code repository">
@@ -71,6 +72,17 @@
       </div>
       </div>
       </div>
+
+      <div class="home-source__legal">
+        <div class="home-source__license">
+          <a href="https://work.yashraj.cc">Portfolio Website</a> © 2025 by <a href="https://work.yashraj.cc">Yashraj Wadalkar</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license noopener noreferrer" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International</a>.
+        </div>
+        {{- with $ccBadge -}}
+        <a class="home-source__license-badge" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license noopener noreferrer" target="_blank" aria-label="Creative Commons BY-NC-SA 4.0 license">
+          <img src="{{ .RelPermalink }}" alt="CC BY-NC-SA 4.0" loading="lazy" decoding="async" />
+        </a>
+        {{- end -}}
+      </div>
     </div>
 
     {{- if ne $previewURL "" -}}
@@ -80,9 +92,6 @@
       </a>
       <div class="home-source__help">
         New to GitHub or not sure how to fork? <a href="{{ $mailto }}">Message me</a> and I’ll help you set it up.
-      </div>
-      <div class="home-source__license">
-        <a href="https://work.yashraj.cc">Portfolio Website</a> © 2025 by <a href="https://work.yashraj.cc">Yashraj Wadalkar</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license noopener noreferrer" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International</a>.
       </div>
     </div>
     {{- end -}}

@@ -2164,6 +2164,29 @@ html.theme-dark .home-source__repo-name {
   text-decoration-thickness: 2px;
 }
 
+.home-source__legal {
+  margin-top: 12px;
+  max-width: 62ch;
+}
+
+.home-source__license-badge {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 10px;
+  text-decoration: none;
+}
+
+.home-source__license-badge img {
+  height: 24px;
+  width: auto;
+  display: block;
+  opacity: 0.9;
+}
+
+.home-source__license-badge:hover img {
+  opacity: 1;
+}
+
 .home-source__desc > *:first-child {
   margin-top: 0;
 }
@@ -2210,7 +2233,7 @@ html.theme-dark .home-source__actions .btn--secondary {
 }
 
 .home-source__card--mini .home-source__content {
-  padding: 14px 14px 12px;
+  padding: 18px 18px 16px;
 }
 
 .home-source__right {
