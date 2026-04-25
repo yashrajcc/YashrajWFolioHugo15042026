@@ -22,44 +22,95 @@
   {{- else -}}
   <a class="home-work-card__link" href="{{ $card.url | relURL }}">
   {{- end -}}
-    {{- if $imgRes -}}
-    <div class="home-work-card__media">
-      <img
-        class="home-work-card__img"
-        src="{{ $imgRes.RelPermalink }}"
-        alt="{{ $card.image_alt | default $title }}"
-        width="800"
-        height="280"
-        loading="lazy"
-        decoding="async"
-      />
-    </div>
-    {{- else if $path -}}
-    <div class="home-work-card__media home-work-card__media--placeholder" aria-hidden="true">
-      <span class="home-work-card__initials">{{ $ini }}</span>
-    </div>
-    {{- end -}}
-    <div class="home-work-card__body">
-      {{- $when := $card.timeline | default $card.year -}}
-      {{- if or $card.company $card.role $when -}}
-      <div class="home-work-card__meta">
-        {{- with $card.company -}}<span class="card-badge">{{ . }}</span>{{- end -}}
-        {{- if $card.wip -}}<span class="card-badge card-badge--wip">In progress</span>{{- end -}}
-        {{- if or $card.role $when -}}
-        <span class="home-work-card__meta-line">
-          {{- with $card.role -}}{{ . }}{{- end -}}
-          {{- if and $card.role $when -}} · {{ end -}}
-          {{- with $when -}}{{ . }}{{- end -}}
-        </span>
+    {{- if eq $variant "featured" -}}
+    <div class="home-work-card__split">
+      <div class="home-work-card__body">
+        {{- $when := $card.timeline | default $card.year -}}
+        {{- if or $card.company $card.role $when -}}
+        <div class="home-work-card__meta">
+          {{- with $card.company -}}<span class="card-badge">{{ . }}</span>{{- end -}}
+          {{- if $card.wip -}}<span class="card-badge card-badge--wip">In progress</span>{{- end -}}
+          {{- if or $card.role $when -}}
+          <span class="home-work-card__meta-line">
+            {{- with $card.role -}}{{ . }}{{- end -}}
+            {{- if and $card.role $when -}} · {{ end -}}
+            {{- with $when -}}{{ . }}{{- end -}}
+          </span>
+          {{- end -}}
+        </div>
+        {{- end -}}
+        <h4 class="home-work-card__title">{{ $title }}</h4>
+        {{- with $card.summary -}}<p class="home-work-card__summary">{{ . }}</p>{{- end -}}
+
+        {{- with $card.highlight -}}
+        <div class="home-work-card__highlight" role="note">
+          {{- with .title -}}<p class="home-work-card__highlight-title">{{ . }}</p>{{- end -}}
+          {{- with .body -}}<p class="home-work-card__highlight-body">{{ . }}</p>{{- end -}}
+        </div>
         {{- end -}}
       </div>
+
+      {{- if $imgRes -}}
+      <div class="home-work-card__media">
+        <img
+          class="home-work-card__img"
+          src="{{ $imgRes.RelPermalink }}"
+          alt="{{ $card.image_alt | default $title }}"
+          width="800"
+          height="280"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      {{- else if $path -}}
+      <div class="home-work-card__media home-work-card__media--placeholder" aria-hidden="true">
+        <span class="home-work-card__initials">{{ $ini }}</span>
+      </div>
       {{- end -}}
-      <h4 class="home-work-card__title">{{ $title }}</h4>
-      {{- with $card.summary -}}<p class="home-work-card__summary">{{ . }}</p>{{- end -}}
     </div>
+    {{- else -}}
+      {{- if $imgRes -}}
+      <div class="home-work-card__media">
+        <img
+          class="home-work-card__img"
+          src="{{ $imgRes.RelPermalink }}"
+          alt="{{ $card.image_alt | default $title }}"
+          width="800"
+          height="280"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      {{- else if $path -}}
+      <div class="home-work-card__media home-work-card__media--placeholder" aria-hidden="true">
+        <span class="home-work-card__initials">{{ $ini }}</span>
+      </div>
+      {{- end -}}
+      <div class="home-work-card__body">
+        {{- $when := $card.timeline | default $card.year -}}
+        {{- if or $card.company $card.role $when -}}
+        <div class="home-work-card__meta">
+          {{- with $card.company -}}<span class="card-badge">{{ . }}</span>{{- end -}}
+          {{- if $card.wip -}}<span class="card-badge card-badge--wip">In progress</span>{{- end -}}
+          {{- if or $card.role $when -}}
+          <span class="home-work-card__meta-line">
+            {{- with $card.role -}}{{ . }}{{- end -}}
+            {{- if and $card.role $when -}} · {{ end -}}
+            {{- with $when -}}{{ . }}{{- end -}}
+          </span>
+          {{- end -}}
+        </div>
+        {{- end -}}
+        <h4 class="home-work-card__title">{{ $title }}</h4>
+        {{- with $card.summary -}}<p class="home-work-card__summary">{{ . }}</p>{{- end -}}
+      </div>
+    {{- end -}}
   {{- if $disabled -}}
   </div>
   {{- else -}}
+    {{- if eq $variant "featured" -}}
+    <span class="home-work-card__hover-cta" aria-hidden="true">Read case study</span>
+    {{- end -}}
   </a>
   {{- end -}}
 </article>

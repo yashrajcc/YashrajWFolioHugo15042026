@@ -4,7 +4,9 @@
   <h3 id="work-featured-heading" class="home-work-band__heading">{{ .Params.home_featured_work_title | default "Featured work" }}</h3>
   <div class="home-work-featured__grid">
     {{- range $cards -}}
+    {{- if not (.hidden | default false) -}}
     {{- partial "home/work-card.html" (dict "card" . "variant" "featured") -}}
+    {{- end -}}
     {{- end -}}
   </div>
 </div>

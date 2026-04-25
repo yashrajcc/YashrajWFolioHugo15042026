@@ -24,6 +24,9 @@ home_featured_cards:
     image: "images/work/live-application-migration-planner.png"
     image_alt: "Cover: Live Application Migration Planner — brownfield migration and planner concept"
     url: "work/live-application-migration-planner/"
+    highlight:
+      title: "Design"
+      body: "Designed the end‑to‑end design system (tokens → components) and shipped it with engineering."
   - title: "Mainframe Assessment Tool"
     summary: "I inherited a fuzzy, high‑complexity product picture and turned it into a clear plan we could ship—then grew the work from two journeys to six, with room for AI helpers on top."
     company: "Google"
@@ -43,6 +46,7 @@ home_featured_cards:
     wip: true
     disabled: true
     disabled_message: "Work in progress — this case study will be updated soon."
+    hidden: true
 
 home_other_work_title: "In other worlds"
 home_other_cards:
