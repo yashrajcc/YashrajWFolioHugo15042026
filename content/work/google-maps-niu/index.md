@@ -24,6 +24,12 @@ aliases:
 
 This work sits on the next layer of how people use the internet in India: not long browsing sessions, but **short, repeated moments** where a phone is checked many times a day and most sessions end in **under half a minute**. The design question is how **Maps** can meet **new-internet users (NIUs)** in those moments with **context that feels grounded in the real world**, not abstract product chrome.
 
+{{< case-img
+  src="niuContext.png"
+  alt="System context: how NIUs move from real-world moments to digital actions in Maps."
+  caption="System context — why NIUs respond to moments (not long browsing sessions)."
+>}}
+
 {{% callout type="info" %}}
 How do you design for users who don’t browse — but respond to moments? I designed a **context-aware notification and content system for hyperlocal users**, shifting from broadcast-based engagement to relevance-driven delivery. By aligning **timing, location, and social context**, the system bridges real-world events with digital awareness — enabling faster, more meaningful user actions.
 {{% /callout %}}
@@ -44,9 +50,21 @@ The implication is simple to state and hard to execute: you do not optimize for 
 
 Notifications are **entry points**, not a separate “feature lane.” If the entry point fails, the rest of the UI barely gets a chance. The shift we framed was from **event-style alerts** to **context-aware triggers** that respect **why now**.
 
+{{< case-img
+  src="niuJourney.png"
+  alt="NIU journey: key moments where a notification can create intent and reduce early drop-off."
+  caption="NIU journey — design for discovery → exploration → proficiency."
+>}}
+
 The framework stayed intentionally small. **Timing** asks when interruption is tolerable (commute, idle pockets, post-work wind-down). **Context** asks why the moment matters (place relevance, time sensitivity). **Clarity** asks what the user should understand in a glance—roughly a **two-second scan**—before they decide to tap or dismiss. In one line: a notification is a **compressed decision**, delivered at the right moment.
 
 Conceptual work focused on the gap between **today’s notification patterns** and a system that could carry **real-world context** into that first touch—without turning the channel into noise.
+
+{{< case-img
+  src="niuFormula.png"
+  alt="Notification formula: timing + context + clarity to deliver a two-second decision."
+  caption="A notification is a compressed decision: timing + context + clarity."
+>}}
 
 {{% callout type="default" %}}
 **Part two — inside the app**  
@@ -57,6 +75,19 @@ The notification work is about **triggering intent**. The hyperlocal content wor
 
 People do not “read a feed” the way a dashboard assumes. They **continuously evaluate relevance**—fast, skeptical, and situational. When the system respects that, the qualitative goal is straightforward: **less time spent decoding**, more time spent on what matters.
 
+{{< case-img
+  src="niuExploration.png"
+  alt="Exploration model: how users scan, judge relevance, and decide what to do next in-the-moment."
+  caption="Exploration — fast scanning, relevance checks, and next-action decisions."
+>}}
+
 Design directions for mocks included **near-you prioritization**, **distance and time on the surface of a card**, a clear way to show **live or ongoing events**, and lightweight **social signals** (activity, comments) that help ranking feel human without becoming noisy.
 
+{{< case-img
+  src="niuFinal.png"
+  alt="Final direction: a hyperlocal content surface that prioritizes “near you” relevance with clear time and distance cues."
+  caption="Final direction — near-you prioritization with time + distance on the card."
+>}}
+
 {{< case-contact-card >}}
+

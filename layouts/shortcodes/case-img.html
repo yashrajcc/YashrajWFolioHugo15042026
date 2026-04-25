@@ -1,0 +1,25 @@
+{{- $src := (.Get "src") | default "" -}}
+{{- if eq $src "" -}}
+  {{- errorf "case-img shortcode requires src param (page: %q)" .Page.File.Path -}}
+{{- end -}}
+
+{{- $alt := (.Get "alt") | default "" -}}
+{{- $caption := (.Get "caption") | default "" -}}
+
+{{- $res := .Page.Resources.GetMatch $src -}}
+{{- if not $res -}}
+  {{- warnf "case-img: could not find %q in page bundle (page: %q). Falling back to raw src." $src .Page.File.Path -}}
+{{- end -}}
+
+{{- $url := "" -}}
+{{- if $res -}}
+  {{- $url = $res.RelPermalink -}}
+{{- else -}}
+  {{- $url = $src | relURL -}}
+{{- end -}}
+
+<figure class="case-fig">
+  <img src="{{ $url }}" alt="{{ $alt }}" loading="lazy" decoding="async" />
+  {{- with $caption -}}<figcaption class="case-fig__caption">{{ . }}</figcaption>{{- end -}}
+</figure>
+
