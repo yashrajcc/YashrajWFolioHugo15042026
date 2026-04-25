@@ -118,6 +118,60 @@ body {
   border-bottom: 1px solid var(--border);
 }
 
+.nav-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--foreground);
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-toggle:hover,
+.nav-toggle:focus-visible {
+  border-color: var(--primary);
+  outline: none;
+}
+
+.nav-toggle__icon {
+  width: 20px;
+  height: 14px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nav-toggle__icon span {
+  display: block;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.9;
+}
+
+.site-header.is-nav-open .nav-toggle__icon span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.site-header.is-nav-open .nav-toggle__icon span:nth-child(2) {
+  opacity: 0;
+}
+
+.site-header.is-nav-open .nav-toggle__icon span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.site-header.is-nav-open .nav-toggle__icon span {
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
 .site-brand {
   display: inline-flex;
   align-items: center;
@@ -3684,28 +3738,41 @@ html.theme-dark .showcase-main.prose .case-solution-card {
   }
 
   .site-header {
-    flex-direction: column;
-    align-items: stretch;
-    padding-left: max(var(--page-gutter), env(safe-area-inset-left));
-    padding-right: max(var(--page-gutter), env(safe-area-inset-right));
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
   }
 
   .site-nav {
+    display: none;
     margin-left: 0;
     width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: flex-start;
+    gap: 10px;
+    padding: 8px 0 2px;
   }
 
   .site-nav a {
-    padding: 6px 2px;
+    padding: 10px 2px;
     min-height: 44px;
     display: inline-flex;
     align-items: center;
   }
 
   .site-tools {
-    align-self: flex-end;
-    width: 100%;
+    margin-left: auto;
     justify-content: flex-end;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+    margin-left: auto;
+  }
+
+  .site-header.is-nav-open .site-nav {
+    display: flex;
   }
 }

@@ -4,7 +4,21 @@
     <span class="site-brand__glyph" aria-hidden="true">&lt;&gt;</span>
     <span class="site-brand__name">{{ .Site.Params.brand | default .Site.Params.author | default .Site.Title }}</span>
   </a>
-  <nav class="site-nav" aria-label="Main">
+  <button
+    type="button"
+    class="nav-toggle"
+    id="nav-toggle"
+    aria-label="Open menu"
+    aria-controls="site-nav"
+    aria-expanded="false"
+  >
+    <span class="nav-toggle__icon" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+  </button>
+  <nav class="site-nav" id="site-nav" aria-label="Main">
     {{- range .Site.Params.nav -}}
     {{- $resumeURL := site.Params.resume_url | default "" -}}
     {{- if and $resumeURL (eq .url $resumeURL) (hasPrefix $resumeURL "/") (not (fileExists (printf "static%s" $resumeURL))) -}}

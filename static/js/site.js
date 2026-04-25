@@ -43,6 +43,38 @@
     });
   }
 
+  // Mobile nav toggle (hamburger)
+  var header = document.querySelector(".site-header");
+  var navToggle = document.getElementById("nav-toggle");
+  var nav = document.getElementById("site-nav");
+  if (header && navToggle && nav) {
+    function setOpen(open) {
+      header.classList.toggle("is-nav-open", open);
+      navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    }
+
+    navToggle.addEventListener("click", function () {
+      setOpen(!header.classList.contains("is-nav-open"));
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") setOpen(false);
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!header.classList.contains("is-nav-open")) return;
+      var t = e.target;
+      if (t && header.contains(t)) return;
+      setOpen(false);
+    });
+
+    nav.addEventListener("click", function (e) {
+      var t = e.target;
+      if (t && t.tagName === "A") setOpen(false);
+    });
+  }
+
   var shareBtn = document.getElementById("showcase-share");
   if (shareBtn) {
     var defaultAria = shareBtn.getAttribute("aria-label") || "Share this page";
