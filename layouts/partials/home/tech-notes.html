@@ -9,12 +9,56 @@
     <div class="home-tech-notes__intro type-body-lead">{{ . | markdownify }}</div>
     {{- end -}}
   </header>
+
   {{- if gt (len $items) 0 -}}
-  {{- $v := $t.card_variant | default "dense" -}}
-  {{- $shape := $t.media_shape | default "square" -}}
-  <div class="home-tech-notes__grid{{ if eq $v "dense" }} home-tech-notes__grid--dense{{ end }}{{ if and (eq $v "dense") (eq $shape "square") }} home-tech-notes__grid--square-media{{ end }}">
+  <div class="home-tech-notes__list" aria-label="Tech notes list">
     {{- range $items -}}
-    {{- partial "home/feed-card.html" (dict "item" . "variant" $v "media_shape" $shape) -}}
+      {{- $item := . -}}
+      {{- $rawURL := strings.TrimSpace ($item.url | default "") -}}
+      {{- if eq $rawURL "" -}}{{- $rawURL = "#" -}}{{- end -}}
+      {{- $href := $rawURL -}}
+      {{- if and $rawURL (not (hasPrefix $rawURL "http://")) (not (hasPrefix $rawURL "https://")) (ne $rawURL "#") -}}
+        {{- $href = $rawURL | relURL -}}
+      {{- end -}}
+      {{- $path := strings.TrimSpace ($item.image | default "") -}}
+      {{- $imgRes := false -}}
+      {{- if and $path (not (hasPrefix $path "http://")) (not (hasPrefix $path "https://")) -}}
+        {{- $try := strings.TrimPrefix "/" $path -}}
+        {{- with resources.Get $try -}}{{- $imgRes = . -}}{{- end -}}
+      {{- end -}}
+      {{- $imgURL := "" -}}
+      {{- if or (hasPrefix $path "http://") (hasPrefix $path "https://") -}}
+        {{- $imgURL = $path -}}
+      {{- else if $imgRes -}}
+        {{- $imgURL = $imgRes.RelPermalink -}}
+      {{- else if ne $path "" -}}
+        {{- $imgURL = $path | relURL -}}
+      {{- end -}}
+
+      <article class="card home-tech-notes-row">
+        <a class="home-tech-notes-row__link" href="{{ $href }}"{{ if or (hasPrefix $rawURL "http://") (hasPrefix $rawURL "https://") }} rel="noopener noreferrer" target="_blank"{{ end }}>
+          <span class="home-tech-notes-row__hovercta" aria-hidden="true">
+            <svg class="home-tech-notes-row__hovercta-icon" viewBox="0 0 24 24" fill="none" focusable="false" aria-hidden="true">
+              <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M10 7h7v7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          {{- if ne $imgURL "" -}}
+          <div class="home-tech-notes-row__media">
+            <img class="home-tech-notes-row__img" src="{{ $imgURL }}" alt="{{ $item.image_alt | default $item.title }}" width="160" height="160" loading="lazy" decoding="async" />
+          </div>
+          {{- end -}}
+          <div class="home-tech-notes-row__body">
+            <div class="home-tech-notes-row__meta">
+              <span class="card-badge">Substack</span>
+            </div>
+            <h3 class="home-tech-notes-row__title">{{ $item.title }}</h3>
+            {{- with $item.summary -}}
+            <div class="home-tech-notes-row__summary">{{ . | markdownify }}</div>
+            {{- end -}}
+          </div>
+        </a>
+      </article>
     {{- end -}}
   </div>
   {{- end -}}

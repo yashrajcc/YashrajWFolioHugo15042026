@@ -80,7 +80,16 @@
     </div>
     <hr class="site-footer__rule" />
     <div class="site-footer__bar">
-      <p class="site-footer__legal">© {{ now.Format "2006" }} {{ $f.brand | default site.Params.brand | default site.Title }}. {{ $f.rights_suffix | default "All Rights Reserved." }}</p>
+      <p class="site-footer__license">
+        <a href="https://work.yashraj.cc">Portfolio Website</a> © 2025 by <a href="https://work.yashraj.cc">Yashraj Wadalkar</a> is licensed under
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International</a>
+        <span class="site-footer__license-icons" aria-hidden="true">
+          <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" />
+          <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" />
+          <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt="" />
+          <img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" alt="" />
+        </span>
+      </p>
       {{- with $f.credit -}}
       <p class="site-footer__credit">{{ . }}</p>
       {{- end -}}

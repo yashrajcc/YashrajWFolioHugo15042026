@@ -1,0 +1,172 @@
+{{- $l := .Params.home_links -}}
+{{- if $l -}}
+{{- $items := $l.items | default slice -}}
+{{- if or $l.intro (gt (len $items) 0) -}}
+<section class="section home-section home-links" id="{{ $l.id | default "links" }}" aria-labelledby="links-heading">
+  <header class="home-links__header">
+    <h2 id="links-heading" class="home-links__title type-band-title">{{ $l.title | default "Links" }}</h2>
+    {{- with $l.intro -}}
+    <div class="home-links__intro type-body-lead">{{ . | markdownify }}</div>
+    {{- end -}}
+  </header>
+  {{- if gt (len $items) 0 -}}
+  <div class="home-links__grid home-links__grid--nimble">
+    {{- range $items -}}
+      {{- $it := . -}}
+      {{- $kind := $it.kind | default "link" -}}
+      {{- $url := strings.TrimSpace ($it.url | default "#") -}}
+      {{- if eq $url "" -}}{{- $url = "#" -}}{{- end -}}
+
+      {{- if eq $kind "twitter" -}}
+      <article class="nimble nimble--twitter card">
+        <a class="nimble__link" href="{{ $url }}" rel="noopener noreferrer" target="_blank" aria-label="Open post on X">
+          <header class="nimble__brand-head">
+            <span class="nimble__brand-logo nimble__brand-logo--x" aria-hidden="true">
+              <svg viewBox="0 0 1200 1227" width="22" height="22" fill="currentColor" focusable="false" aria-hidden="true">
+                <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z"/>
+              </svg>
+            </span>
+            <div class="nimble__brand-names">
+              <div class="nimble__brand-title">{{ $it.name | default "X" }}</div>
+              <div class="nimble__brand-sub">{{ $it.handle | default "@handle" }}{{- with $it.date -}} <span class="nimble__brand-dot" aria-hidden="true">·</span> {{ . }}{{- end -}}</div>
+            </div>
+          </header>
+          {{- with $it.text -}}<div class="nimble__post-text">{{ . | markdownify }}</div>{{- end -}}
+          <footer class="nimble__actions nimble__actions--x" aria-hidden="true">
+            <span class="nimble__action">
+              <svg class="nimble__action-ico" viewBox="0 0 24 24" fill="none" focusable="false" aria-hidden="true">
+                <path d="M9 20l-5-5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4 15h10a6 6 0 0 1 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              Reply
+            </span>
+            <span class="nimble__action">
+              <svg class="nimble__action-ico" viewBox="0 0 24 24" fill="none" focusable="false" aria-hidden="true">
+                <path d="M17 1l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M7 23l-4-4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M21 5H10a6 6 0 0 0-6 6v0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M3 19h11a6 6 0 0 0 6-6v0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              Repost
+            </span>
+            <span class="nimble__action">
+              <svg class="nimble__action-ico" viewBox="0 0 24 24" fill="none" focusable="false" aria-hidden="true">
+                <path d="M12 21s-7-4.4-9.5-8.5C.2 8.7 2.3 5 6.2 5c2 0 3.4 1 3.8 1.6.4-.6 1.8-1.6 3.8-1.6 3.9 0 6 3.7 3.7 7.5C19 16.6 12 21 12 21z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              Like
+            </span>
+            <span class="nimble__action">
+              <svg class="nimble__action-ico" viewBox="0 0 24 24" fill="none" focusable="false" aria-hidden="true">
+                <path d="M12 5v14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M18 11l-6-6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Share
+            </span>
+          </footer>
+        </a>
+      </article>
+
+      {{- else if eq $kind "instagram" -}}
+      <article class="nimble nimble--instagram card">
+        <a class="nimble__link" href="{{ $url }}" rel="noopener noreferrer" target="_blank" aria-label="Open post on Instagram">
+          <header class="nimble__brand-head">
+            <span class="nimble__brand-logo nimble__brand-logo--ig" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true">
+                <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 16.2a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M17.2 6.8h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <div class="nimble__brand-names">
+              <div class="nimble__brand-title">{{ $it.handle | default "instagram" }}</div>
+              <div class="nimble__brand-sub">Instagram{{- with $it.location -}} <span class="nimble__brand-dot" aria-hidden="true">·</span> {{ . }}{{- end -}}</div>
+            </div>
+          </header>
+          {{- with $it.caption -}}<div class="nimble__post-text">{{ . | markdownify }}</div>{{- end -}}
+          <footer class="nimble__actions nimble__actions--ig" aria-hidden="true">
+            <span class="nimble__action">
+              <svg class="nimble__action-ico" viewBox="0 0 24 24" fill="none" focusable="false" aria-hidden="true">
+                <path d="M12 21s-7-4.4-9.5-8.5C.2 8.7 2.3 5 6.2 5c2 0 3.4 1 3.8 1.6.4-.6 1.8-1.6 3.8-1.6 3.9 0 6 3.7 3.7 7.5C19 16.6 12 21 12 21z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              Like
+            </span>
+            <span class="nimble__action">
+              <svg class="nimble__action-ico" viewBox="0 0 24 24" fill="none" focusable="false" aria-hidden="true">
+                <path d="M21 15a4 4 0 0 1-4 4H8l-5 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              Comment
+            </span>
+            <span class="nimble__action">
+              <svg class="nimble__action-ico" viewBox="0 0 24 24" fill="none" focusable="false" aria-hidden="true">
+                <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M22 2l-7 20-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              Share
+            </span>
+            <span class="nimble__action">
+              <svg class="nimble__action-ico" viewBox="0 0 24 24" fill="none" focusable="false" aria-hidden="true">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              Save
+            </span>
+          </footer>
+        </a>
+      </article>
+
+      {{- else if eq $kind "linkedin" -}}
+      <article class="nimble nimble--linkedin card">
+        <a class="nimble__link" href="{{ $url }}" rel="noopener noreferrer" target="_blank" aria-label="Open post on LinkedIn">
+          <header class="nimble__brand-head">
+            <span class="nimble__brand-logo nimble__brand-logo--li" aria-hidden="true">in</span>
+            <div class="nimble__brand-names">
+              <div class="nimble__brand-title">{{ $it.name | default "LinkedIn" }}</div>
+              <div class="nimble__brand-sub">{{ $it.headline | default "LinkedIn post" }}{{- with $it.date -}} <span class="nimble__brand-dot" aria-hidden="true">·</span> {{ . }}{{- end -}}</div>
+            </div>
+          </header>
+          {{- with $it.text -}}<div class="nimble__post-text">{{ . | markdownify }}</div>{{- end -}}
+          <footer class="nimble__actions nimble__actions--li" aria-hidden="true">
+            <span class="nimble__action">
+              <svg class="nimble__action-ico" viewBox="0 0 24 24" fill="none" focusable="false" aria-hidden="true">
+                <path d="M7 11v10H3V11h4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M7 11l5-7a2 2 0 0 1 4 1v6h4a2 2 0 0 1 2 2l-2 8H7" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              Like
+            </span>
+            <span class="nimble__action">
+              <svg class="nimble__action-ico" viewBox="0 0 24 24" fill="none" focusable="false" aria-hidden="true">
+                <path d="M21 15a4 4 0 0 1-4 4H8l-5 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              Comment
+            </span>
+            <span class="nimble__action">
+              <svg class="nimble__action-ico" viewBox="0 0 24 24" fill="none" focusable="false" aria-hidden="true">
+                <path d="M7 7h10v6h4l-7 7-7-7h4V7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              Repost
+            </span>
+            <span class="nimble__action">
+              <svg class="nimble__action-ico" viewBox="0 0 24 24" fill="none" focusable="false" aria-hidden="true">
+                <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M22 2l-7 20-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              Send
+            </span>
+          </footer>
+        </a>
+      </article>
+
+      {{- else -}}
+      <article class="nimble nimble--link card">
+        <a class="nimble__link" href="{{ $url }}" rel="noopener noreferrer" target="_blank">
+          <div class="nimble__title">{{ $it.title | default "Link" }}</div>
+          {{- with $it.summary -}}<div class="nimble__text">{{ . | markdownify }}</div>{{- end -}}
+        </a>
+      </article>
+      {{- end -}}
+    {{- end -}}
+  </div>
+  {{- end -}}
+</section>
+{{- end -}}
+{{- end -}}
+

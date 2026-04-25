@@ -151,6 +151,32 @@ home_writing:
       summary: |
         What I’m in fact saying, whether Ruby on Rails / Django / Flask / or any of these database wrappers serving on monoliths / clouds / vps’ in itself a political act. Or to ask the question is a political act.
 
+home_links:
+  id: "links"
+  title: "Elsewhere"
+  intro: "A few places I share work-in-progress, notes, and projects."
+  items:
+    - kind: twitter
+      url: "https://x.com/notesyashrajcc"
+      name: "notes.yashraj.cc"
+      handle: "@notesyashrajcc"
+      date: "Today"
+      avatar: "NY"
+      text: "Short notes on tooling, infra, and tiny builds. Follow along as I ship this portfolio in public."
+    - kind: instagram
+      url: "https://www.instagram.com/notes.yashraj.cc/"
+      handle: "notes.yashraj.cc"
+      location: "Bengaluru"
+      avatar: "NY"
+      caption: "Small notes, progress shots, and behind-the-scenes while I’m building."
+    - kind: linkedin
+      url: "https://www.linkedin.com/feed/"
+      name: "Yashraj Wadalkar"
+      avatar: "YW"
+      headline: "UX designer · Cloud infra & developer experience"
+      date: "1d · Edited"
+      text: "Shipping this portfolio in public — fork it, break it, remix it, and tell me what you build."
+
 home_tech_notes:
   title: "Yashraj's Tech Notes"
   intro: "Shorter technical notes on tooling, infrastructure, and small builds — from my Substack."
@@ -167,4 +193,17 @@ home_tech_notes:
       image: "/images/tech-notes/notes-learn-in-public.png"
       image_alt: "Cover card — learn in public, with notes.yashraj.cc and Substack URLs."
       hide_visual_title: true
+
+home_source_code:
+  id: "source"
+  title: "The Source Code"
+  intro: "This portfolio is an easter egg in itself. It’s a project I built from the ground up — not just to showcase my work, but as a piece of work itself. Here’s a look under the hood."
+  owner: "yashrajc"
+  repo: "YashrajWFolio"
+  visibility: "Public"
+  repo_description: "Fork it, break it, remix it — make it yours."
+  repo_url: "https://github.com/"
+  repo_label: "View on GitHub"
+  preview_image: "/images/source/github-repo.png"
+  preview_alt: "Screenshot preview of the GitHub repository page"
 ---

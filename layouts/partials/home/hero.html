@@ -1,5 +1,6 @@
 {{- $p := .Params -}}
 <section class="hero-home" id="top" aria-label="Introduction">
+  <div class="hero-home__bg" id="hero-stars" aria-hidden="true"></div>
   <div class="hero-home__copy">
     {{- with $p.home_hero_greeting -}}<p class="hero-greeting">{{ . }}</p>{{- end -}}
     {{- with $p.home_hero_eyebrow -}}<p class="hero-eyebrow">{{ . }}</p>{{- end -}}
@@ -16,16 +17,5 @@
       {{- $secondaryLabel := $p.home_hero_secondary_label | default "Get in touch" -}}
       <a class="btn btn--secondary" href="{{ $mailto }}">{{ $secondaryLabel }}</a>
     </div>
-  </div>
-  <div class="hero-home__viz" aria-hidden="true">
-    <svg class="hero-orbit" viewBox="0 0 420 380" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="210" cy="190" r="158" stroke="currentColor" stroke-width="1" stroke-dasharray="3 10" opacity="0.4"/>
-      <circle cx="210" cy="190" r="118" stroke="currentColor" stroke-width="1" stroke-dasharray="2 8" opacity="0.35"/>
-      <circle cx="210" cy="190" r="78" stroke="currentColor" stroke-width="1" stroke-dasharray="4 12" opacity="0.3"/>
-      <ellipse cx="210" cy="190" rx="190" ry="95" stroke="currentColor" stroke-width="1" stroke-dasharray="5 14" opacity="0.25" transform="rotate(-18 210 190)"/>
-      <circle cx="328" cy="108" r="5" fill="var(--primary)"/>
-      <circle cx="96" cy="248" r="4" fill="currentColor" opacity="0.45"/>
-      <circle cx="268" cy="278" r="3" fill="currentColor" opacity="0.35"/>
-    </svg>
   </div>
 </section>
