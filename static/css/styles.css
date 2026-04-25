@@ -3387,6 +3387,7 @@ html.theme-dark .home-work-card--other .home-work-card__media--other::after {
   --showcase-chrome-stack: calc(var(--space-4) + var(--space-3) + 2.5rem + var(--space-2));
   padding: 0;
   margin: 0;
+  overflow-x: clip;
 }
 
 /* Chrome-like “app bar”: sticky under site header */
@@ -3422,7 +3423,7 @@ html.theme-dark .showcase-chrome {
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-2) var(--space-3);
-  padding: var(--space-4) var(--page-gutter) var(--space-3);
+  padding: var(--space-4) max(var(--page-gutter), env(safe-area-inset-left)) var(--space-3) max(var(--page-gutter), env(safe-area-inset-right));
   background: var(--chrome-frame);
 }
 
@@ -3961,8 +3962,8 @@ html.theme-dark .showcase-main.prose .case-solution-card {
 
 @media (max-width: 900px) {
   .showcase-chrome__row {
-    padding-left: var(--space-4);
-    padding-right: var(--space-4);
+    padding-left: max(var(--space-4), env(safe-area-inset-left));
+    padding-right: max(var(--space-4), env(safe-area-inset-right));
   }
 
   .showcase-shell {
