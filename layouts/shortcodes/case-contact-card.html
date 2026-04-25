@@ -5,10 +5,47 @@
     Thank you for reviewing this material. The narrative and visuals above are <strong>illustrative or otherwise cleared for public sharing</strong> only; further facts, designs, metrics, and client context may be <strong>withheld under confidentiality obligations</strong>, including any applicable non‑disclosure agreement. Nothing on this page constitutes an offer, endorsement, or representation by any employer or client.
   </p>
   <p class="showcase-end-card__cta-line">
-    {{- if ne $email "" -}}
-    If you would like to discuss this work—or similar problems—in an appropriate forum, you can reach me at <a href="mailto:{{ $email }}">{{ $email }}</a>.
-    {{- else -}}
-    If you would like to discuss this work—or similar problems—in an appropriate forum, please reach out through the contact options on this site.
-    {{- end -}}
+    If you'd like access to NDA case studies, request it here (I typically only approve valid business emails).
   </p>
+
+  <iframe
+    class="showcase-end-card__embed"
+    data-tally-src="https://tally.so/embed/ja07Q9?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+    loading="lazy"
+    width="100%"
+    height="260"
+    frameborder="0"
+    marginheight="0"
+    marginwidth="0"
+    title="NDA case study access request"
+  ></iframe>
+
+  <noscript>
+    <p class="showcase-end-card__cta-line">
+      JavaScript is required to load the form.{{ if ne $email "" }} You can also email <a href="mailto:{{ $email }}">{{ $email }}</a>.{{ end }}
+    </p>
+  </noscript>
+
+  <script>
+    (function () {
+      var d = document,
+        w = "https://tally.so/widgets/embed.js",
+        v = function () {
+          if (typeof Tally !== "undefined") Tally.loadEmbeds();
+          else
+            d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function (e) {
+              e.src = e.dataset.tallySrc;
+            });
+        };
+      if (typeof Tally !== "undefined") v();
+      else if (d.querySelector('script[src="' + w + '"]') == null) {
+        var s = d.createElement("script");
+        s.src = w;
+        s.async = true;
+        s.onload = v;
+        s.onerror = v;
+        d.body.appendChild(s);
+      }
+    })();
+  </script>
 </aside>
