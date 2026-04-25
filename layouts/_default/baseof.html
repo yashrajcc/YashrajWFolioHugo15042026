@@ -56,6 +56,9 @@
     {{ block "main" . }}{{ end }}
   </div>
   {{ partial "site-footer.html" . }}
+  {{ if hugo.IsProduction }}
+    {{ partial "analytics-consent.html" . }}
+  {{ end }}
   {{- $jsVer := now.Unix -}}
   {{- if .IsHome -}}
   <script src="{{ ("js/vendor/p5.min.js" | relURL) }}?v={{ $jsVer }}" defer></script>

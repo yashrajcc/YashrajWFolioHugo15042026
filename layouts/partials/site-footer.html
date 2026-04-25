@@ -90,6 +90,13 @@
           <img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" alt="" />
         </span>
       </p>
+      {{- if hugo.IsProduction -}}
+      <p class="site-footer__legal">
+        <button type="button" class="site-footer__link site-footer__link--btn" id="analytics-settings">
+          Analytics settings
+        </button>
+      </p>
+      {{- end -}}
       {{- with $f.credit -}}
       <p class="site-footer__credit">{{ . }}</p>
       {{- end -}}

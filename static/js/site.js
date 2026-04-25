@@ -1,5 +1,6 @@
 (function () {
   var root = document.documentElement;
+  var ANALYTICS_KEY = "analytics-consent";
 
   function getTheme() {
     try {
@@ -102,4 +103,111 @@
       }
     });
   }
+
+  // Analytics (GoatCounter) — only load after visitor choice.
+  function safeGet(key) {
+    try {
+      return localStorage.getItem(key);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function safeSet(key, value) {
+    try {
+      localStorage.setItem(key, value);
+    } catch (e) {}
+  }
+
+  function loadGoatCounter(endpoint) {
+    if (!endpoint) return;
+    if (document.querySelector('script[src*="gc.zgo.at/count.js"]')) return;
+
+    // Prevent an automatic onload count; we’ll trigger a single count after load.
+    window.goatcounter = window.goatcounter || {};
+    window.goatcounter.no_onload = true;
+
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "//gc.zgo.at/count.js";
+    s.setAttribute("data-goatcounter", endpoint);
+    s.addEventListener("load", function () {
+      try {
+        if (window.goatcounter && typeof window.goatcounter.count === "function") {
+          window.goatcounter.count({ path: location.pathname + location.search + location.hash });
+        }
+      } catch (e) {}
+    });
+    document.head.appendChild(s);
+  }
+
+  function initAnalyticsConsent() {
+    var el = document.getElementById("analytics-consent");
+    if (!el) return; // not rendered (e.g. non-production)
+
+    var dialog = el.querySelector(".analytics-consent__dialog");
+    var acceptBtn = el.querySelector('[data-analytics-consent="accept"]');
+    var rejectBtn = el.querySelector('[data-analytics-consent="reject"]');
+    var endpoint = el.getAttribute("data-goatcounter-endpoint");
+    var settingsBtn = document.getElementById("analytics-settings");
+
+    function hide() {
+      el.hidden = true;
+    }
+
+    function show() {
+      el.hidden = false;
+      if (dialog && dialog.focus) dialog.focus();
+      if (acceptBtn && acceptBtn.focus) acceptBtn.focus();
+    }
+
+    function choose(value) {
+      safeSet(ANALYTICS_KEY, value);
+      hide();
+      if (value === "accept") loadGoatCounter(endpoint);
+    }
+
+    if (settingsBtn) {
+      settingsBtn.addEventListener("click", function () {
+        show();
+      });
+    }
+
+    var choice = safeGet(ANALYTICS_KEY);
+    if (choice === "accept") {
+      loadGoatCounter(endpoint);
+      hide();
+      return;
+    }
+    if (choice === "reject") {
+      hide();
+      return;
+    }
+
+    if (acceptBtn) acceptBtn.addEventListener("click", function () { choose("accept"); });
+    if (rejectBtn) rejectBtn.addEventListener("click", function () { choose("reject"); });
+
+    // Keep focus inside the dialog (basic two-button trap).
+    el.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        choose("reject");
+        return;
+      }
+      if (e.key !== "Tab") return;
+      if (!acceptBtn || !rejectBtn) return;
+
+      var active = document.activeElement;
+      if (e.shiftKey && active === acceptBtn) {
+        e.preventDefault();
+        rejectBtn.focus();
+      } else if (!e.shiftKey && active === rejectBtn) {
+        e.preventDefault();
+        acceptBtn.focus();
+      }
+    });
+
+    show();
+  }
+
+  initAnalyticsConsent();
 })();

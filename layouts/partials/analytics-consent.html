@@ -1,0 +1,37 @@
+<div
+  id="analytics-consent"
+  class="analytics-consent"
+  data-goatcounter-endpoint="https://yashrajw.goatcounter.com/count"
+  hidden
+>
+  <div class="analytics-consent__backdrop" aria-hidden="true"></div>
+  <div
+    class="analytics-consent__dialog card"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="analytics-consent-title"
+    aria-describedby="analytics-consent-desc"
+    tabindex="-1"
+  >
+    <h2 id="analytics-consent-title" class="analytics-consent__title">Open, lightweight analytics</h2>
+    <div id="analytics-consent-desc" class="analytics-consent__body prose">
+      <p>
+        I use <strong>GoatCounter</strong> (open-source analytics) to understand what people read and whether the writing is making sense.
+        It’s designed to be <strong>non-intrusive</strong>: no ads, no tracking across sites, and no personal “profiles”.
+      </p>
+      <p>
+        In practice this means pageview-level stats (like which pages are visited, rough referrers, and device/browser info).
+        It <strong>doesn’t use advertising cookies</strong> and is not used to identify you.
+      </p>
+      <p class="muted">
+        GDPR note: analytics still involves processing some personal data (e.g. IP address in transit). I only use this for basic traffic stats.
+        You can opt out at any time by rejecting below.
+      </p>
+    </div>
+    <div class="analytics-consent__actions">
+      <button type="button" class="btn btn--primary" data-analytics-consent="accept">OK, enable</button>
+      <button type="button" class="btn btn--secondary" data-analytics-consent="reject">Reject</button>
+    </div>
+  </div>
+</div>
+
