@@ -22,6 +22,12 @@ image_alt: "Cover gradient — Rocket Learning and Google.org fellowship"
 As part of the **Google.org Fellowship**, I led a focused design sprint to translate early childhood pedagogy, on-ground realities, and generative AI capabilities into **Appu** — a **voice-first, personalised tutor** for young learners.
 {{% /callout %}}
 
+{{< case-img
+  src="rl1.png"
+  alt="Stakeholder map for Appu showing caregivers and students aged 3–5 and 6–8, with connections across classroom and home contexts."
+  caption="The real system: children, caregivers, teachers, and support staff—each shaping how “AI tutoring” is experienced."
+>}}
+
 My work helped:
 
 - **Define** core interaction patterns for conversational learning  
@@ -51,6 +57,12 @@ With support from **Google.org**:
 
 That combination led to **Appu** — a **conversational AI tutor** aimed at **children roughly 3–6 years old**, delivered through patterns families could actually sustain in real homes.
 
+{{< case-img
+  src="rl2.png"
+  alt="Journey mapping board showing end-to-end flows for Appu across multiple contexts and screen states."
+  caption="Mapping end-to-end journeys early helped us keep the experience coherent across entry points and learning loops."
+>}}
+
 ## What I worked on
 
 ### 1. Defining the core experience (information architecture, reframed)
@@ -67,6 +79,12 @@ So we **collapsed vertical depth**:
 
 **Appu** is introduced as a **friendly elephant tutor** — voice-led, so the child meets a **character** first, not a dashboard.
 
+{{< case-img
+  src="rl3.png"
+  alt="Slide showing Appu learning flow on mobile with Hindi letter ‘म’, and the framing 'LLM = LMS × Gamification × Audio'."
+  caption="Working model: LLM behavior had to fit a learning system, child attention, and voice interaction—not a chat box."
+>}}
+
 ### 2. Translating pedagogy into AI behaviour
 
 We studied **how teachers and caregivers explain concepts in the wild** — including tiny teaching moves (for example, how **“M”** is anchored to **“Mango”** in speech and gesture, not only as a letterform). Pedagogy and education partners built a **shared knowledge bank** that grounded what “good teaching” means for each concept.
@@ -80,6 +98,12 @@ Because LLM outputs are **non-deterministic**, we wrapped the model in scaffoldi
 {{% callout type="note" %}}
 **Example of reframing a struggle:** If a child still cannot recognise **“M”** after several tries, Appu does not only repeat the instruction. It can **reframe** the moment: *“Oh! Maybe mangoes are too sweet today. Let’s look at a monkey! Can you make a sound like a monkey? Mmm-mmm!”* — turning a **dead end** into a **new on-ramp** to the same letter sound.
 {{% /callout %}}
+
+{{< case-img
+  src="rl4.png"
+  alt="Slide reading 'Define and design for audio × LLM — attention is key' with Appu character and child-friendly visual cues."
+  caption="Design principle: attention is the constraint—audio + LLM UX must be paced for preschoolers."
+>}}
 
 ### 3. Designing for real-world India
 
@@ -106,6 +130,12 @@ Generative AI plus early-childhood UX required **tight loops** between design, e
 - **Latency:** slow first responses **break** conversation for a four-year-old. We pushed on **time-to-first-token** until the wait felt **meaningfully shorter** in primary flows (without publishing exact benchmarks here) and used **conversational fillers** (*“Hmm…”*, *“Let me see…”*) to preserve the feeling of **active listening** while work finished behind the scenes  
 - **Noisy environments:** rural homes are rarely silent; **voice activity detection** had to survive kitchens, siblings, and background life. We tuned **VAD** thresholds and designed explicit **“listening” states** so children could see **when Appu could hear** versus **when the environment was overwhelming the mic**  
 - **Persona and safety:** we used a structured **pedagogical template layer** so Appu stayed **in character**, **age-appropriate**, and far less likely to **drift** into explanations a preschooler cannot process  
+
+{{< case-img
+  src="rl5.png"
+  alt="Outcome slide titled 'What did we achieve?' showing multiple Appu screens including a start screen and counting activity."
+  caption="From idea → functioning prototype: core flows were defined tightly enough to be piloted and instrumented."
+>}}
 
 **Early pilot signals (large regional cohort, India):**
 

@@ -24,6 +24,12 @@ The official definition of **MSMEs** in **government** records spans a vast band
 
 We started from definitions of **small and very small** businesses—but **definitions rarely match lived operations**.
 
+{{< case-img
+  src="ms1.png"
+  alt="Overview slide about SMBs and very small businesses, paired with a photo of a shop counter in India."
+  caption="Overview — MSME work is grounded in real storefront operations, not enterprise org charts."
+>}}
+
 ## Making sense of the unorganized sector
 
 To make sense of the **unorganized MSME** slice, we mapped an **end-to-end operational journey** of a **local coffee distributor** and used it to highlight **critical friction points**:
@@ -35,6 +41,12 @@ To make sense of the **unorganized MSME** slice, we mapped an **end-to-end opera
 - **Post-service:** Disputes force teams to **reconstruct history** from **unstructured chat** archaeology.
 
 That exercise made the overarching issue explicit: it is usually **not a lack of tools**, but a **severe lack of integration** across the **daily workflow**.
+
+{{< case-img
+  src="ms8.png"
+  alt="Slide titled 'Consumer to SMBs' describing familiarity as a major factor and asking how to increase usage of Microsoft 365 products."
+  caption="Key reframing: adoption hinges on familiarity—meet people where their daily tool habits already live."
+>}}
 
 **Small and medium enterprises** are the backbone of the economy, yet **digital transformation** often misfires for them. This work focused on **reimagining core collaboration and productivity patterns** inside **Microsoft 365** so they could meet **this segment’s** constraints—not a shrunken enterprise fantasy.
 
@@ -49,6 +61,12 @@ MSME owners and employees often **juggle consumer-grade apps** to run the busine
 3. **Lack of standardization:** *Vendor and client interactions follow inconsistent protocols. The design problem is introducing scalable structure **without** forcing clunky enterprise paradigms onto six-person operations.*
 4. **Fragmented toolkits:** *The mission was to unify scattered processes into something **M365-shaped**—without increasing cognitive load.*
 
+{{< case-img
+  src="ms7.png"
+  alt="Bullet list of essential factors for the segment: clients dictate tools, familiarity, price point, ease of use, security and privacy."
+  caption="What mattered most: client-driven tool choice, familiarity, price, ease, and trust—before feature depth."
+>}}
+
 {{% quote author="Ravi, 42" role="Local coffee distributor" %}}
 It feels like I spend half my day just playing catch-up between WhatsApp messages, my ledger, and phone calls. If I don’t constantly move the information myself, the entire business stops.
 {{% /quote %}}
@@ -61,11 +79,23 @@ It feels like I spend half my day just playing catch-up between WhatsApp message
 
 We developed a **streamlined narrative** for how M365-class experiences could **reduce daily chaos** without pretending every MSME will adopt a full ERP. Highlights of the **proposed ecosystem direction**:
 
+{{< case-img
+  src="ms2.png"
+  alt="Methodology slide summarizing desk research and in-depth participant interviews, with interview call screenshots."
+  caption="Method — desk research + in-depth interviews with owners/decision makers across multiple Indian cities."
+>}}
+
 ### 1. Templatizing day-to-day expansion
 
 *How might we templatize essential day-to-day tasks so owners can expand capacity without re-learning a new system every week?*
 
 To reduce cognitive load, we explored **task patterns** that **proactively surface** what needs to happen on a regular cadence—closer to “**gentle operating rhythm**” than a blank suite.
+
+{{< case-img
+  src="ms5.png"
+  alt="Scale definition slide showing OAE, Micro (2–10), Small (11–99), and Medium (100–999) enterprises."
+  caption="Redefining “micro” scale—most workflows we designed for were 2–10 people, not 50+."
+>}}
 
 > **Scenario:** A café owner receives orders, payment confirmations, and delivery updates scattered across **WhatsApp**, **calls**, and **memory**—no single system, only **fragmented signals** they mentally stitch together. Each message carries **implicit business intent** (order, payment, follow-up), but it stays **unstructured**, forcing the owner to **manually translate** chat into **action**.
 
@@ -79,9 +109,27 @@ Instead of jumping between WhatsApp, phone calls, and scribbled notes, the direc
 - **See payments clearly** so nobody gets dropped  
 - **Run the day** from one primary surface  
 
+{{< case-img
+  src="ms4.png"
+  alt="Summary slide listing research outputs: 30+ articles, 10+ papers, 25+ reports, stakeholder and participant interviews."
+  caption="Research volume — triangulating desk research with interviews to avoid one-segment generalizations."
+>}}
+
 ### 3. From hustle to flow
 
 The system should **learn how the team works** and progressively take on **repeatable chores**—chasing late payments, checking stock signals—so the business moves from **daily scramble** toward **managed flow**, freeing attention for decisions that actually require a human.
+
+{{< case-img
+  src="ms3.png"
+  alt="Participant segments slide listing digital and micro segments with multiple participant tiles."
+  caption="Who we spoke to — a spread of digital and micro business types, not one archetype."
+>}}
+
+{{< case-img
+  src="ms6.png"
+  alt="Chart slide stating emerging industries are dominated by OAEs and micro enterprises, with segment labels across employee counts."
+  caption="Market reality — emerging industries skew heavily toward micro-scale operations."
+>}}
 
 {{% callout type="info" %}}
 This project is under **NDA**. Detailed designs and strategy documents are available for discussion **in live review** contexts—not on this public page.
